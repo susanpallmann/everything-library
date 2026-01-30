@@ -1,5 +1,3 @@
-import iconLibrary from "icon-library.js";
-
 // Series of functions, methods, and classes for creating common UI elements (to be expanded)
 // Use with everything-library/ui/component-system.css, requires everything-library/ui/icon-library.js
 
