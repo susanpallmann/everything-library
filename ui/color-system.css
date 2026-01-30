@@ -1,5 +1,6 @@
 /* I don't know if it will let me separate out these variables but let's find out */
 /* Cool color system that uses CSS variables to infer entire color palettes for light and dark themes off of two HSL colors */
+
 :root {
 	--primary-h: 28;
 	--primary-s: 90;
