@@ -57,19 +57,6 @@
 	--shadow-4: 0px 3px 5px -3px hsla(0, 0%, 0%, 0.2), 0px 5px 7px 1px hsla(0, 0%, 0%, 0.14), 0px 3px 9px 0px hsla(0, 0%, 0%, 0.12);
 	--shadow-5: 0px 4px 7px -5px hsla(0, 0%, 0%, 0.2), 0px 7px 9px 2px hsla(0, 0%, 0%, 0.14), 0px 3px 12px 0px hsla(0, 0%, 0%, 0.12);
 	--scrim: hsla(0, 0%, 0%, 0.66);
-	font-size: 16px;
-	font-weight: 400;
-	--text-size-body: 1em;
-	--text-size-label: 0.9em;
-	--text-size-utility: 1.2em;
-	--text-size-title: 1.2em;
-	--text-size-headline: 3em;
-	--text-size-display: 4em;
-	--text-weight-book: 400;
-	--text-weight-medium: 500;
-	--text-weight-semibold: 600;
-	--text-weight-bold: 700;
-	--text-color: var(--font-primary);
 }
 
 :root [theme="light"] {
