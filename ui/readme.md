@@ -7,7 +7,8 @@
 - [ ] FAB button - styles only
 - [ ] FAB menu - styles only
 - [X] Checkbox
-- [ ] Radio button - styles only
+- [X] Radio button
+- [ ] Radio button group
 - [ ] Cards - styles only
 
 **Planned**
