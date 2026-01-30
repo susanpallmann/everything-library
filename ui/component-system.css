@@ -435,17 +435,17 @@
   fill: var(--b-font-on-color);
 }
 
-.checkbox.wrapper[check="unchecked"] .fill {
+[check="unchecked"] .fill {
   border: 2px solid var(--outline);
   background-color: transparent;
 }
 
-.checkbox.wrapper[check="indeterminate"] .fill {
+[check="indeterminate"] .fill {
   border: none;
   background-color: var(--b-color);
 }
 
-.checkbox.wrapper[check="checked"] .fill {
+[check="checked"] .fill {
   border: none;
   background-color: var(--b-color);
 }
