@@ -1,5 +1,6 @@
 // Series of functions, methods, and classes for creating common UI elements (to be expanded)
-// Use with everything-library/ui/component-system.css
+// Use with everything-library/ui/component-system.css, requires everything-library/ui/icon-library.js
+import iconLibrary from "icon-library.js";
 
 function checkBounds(element, x, y) {
 	return x >= element.offset().left && x <= element.offset().left + parseInt(element.css('width'))
