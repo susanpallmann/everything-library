@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	</head>
+	<body>
+		<main>
+			<div id="app" theme="light">
+				<div class="left">
+					<p>Name:</p>
+					<input id="name" type="text" placeholder="name"></input>
+					<p>24px - outlined:</p>
+					<input id="24-outline" type="text" placeholder="24-outline"></input>
+					<p>24px - filled:</p>
+					<input id="24-fill" type="text" placeholder="24-fill"></input>
+					<p>48px - outlined:</p>
+					<input id="48-outline" type="text" placeholder="48-outline"></input>
+					<p>48px - filled:</p>
+					<input id="48-fill" type="text" placeholder="48-fill"></input>
+					<div id="add" class="button"><p>Add</p></div>
+				</div>
+				<div class="right">
+					<p id="output"></p>
+				</div>
+			</div>
+		</main>
+		<style>
+			#app {
+				display: flex;
+				flex-direction: row;
+				font-family: 'Arial', sans-serif;
+				gap: 24px;
+				padding: 24px;
+			}
+			input[type="text"] {
+				height: 40px;
+				border-radius: 8px;
+				outline: none;
+				border: 1px solid #666;
+				padding: 4px 12px;
+				font-size: 16px;
+			}
+			.button {
+				height: 40px;
+				width: fit-content;
+				padding: 8px 24px;
+				background-color: #FF9999;
+				display: inline-block;
+				align-content: center;
+				border-radius: 8px;
+				cursor: pointer;
+				margin-top: 24px;
+			}
+			.button p {
+				margin: 0;
+				font-size: 16px;
+			}
+			.left p {
+				margin-bottom: 4px;
+			}
+			.left {
+				display: flex;
+				flex-direction: column;
+				gap: 0px;
+				width: 100%;
+			}
+			.right {
+				width: 100%;
+			}
+		</style>
+		<script>
+			$('#add').on('click', function() {
+				let formValues = [];
+				formValues.push($('#name').val());
+				formValues.push($('#24-outline').val());
+				formValues.push($('#48-outline').val());
+				formValues.push($('#24-fill').val());
+				formValues.push($('#48-fill').val());
+				
+				for (let i = 1; i < formValues.length; i++) {
+					formValues[i] = formValues[i].replace('height="24px"', '');
+					formValues[i] = formValues[i].replace('width="24px"', '');
+					formValues[i] = formValues[i].replace('height="48px"', '');
+					formValues[i] = formValues[i].replace('height="48px"', '');
+					formValues[i] = formValues[i].replace(' fill="#FFF"', '');
+					formValues[i] = formValues[i].replace('svg ', 'svg class="icon" ');
+				}
+				const prevText = $('#output').text();
+				
+				const newText = prevText + `${formValues[0]}: {
+					outlined: {
+						'24': '${formValues[1]}',
+						'48': '${formValues[2]}'
+					},
+					filled: {
+						'24': '${formValues[3]}',
+						'48': '${formValues[4]}'
+					}
+				},`;
+				
+				$('#output').empty();
+				$('#output').text(newText);
+				$('input[type="text"]').each(function () {
+					$(this).val('');
+				});
+			});
+		</script>
+	</body>
+</html>
