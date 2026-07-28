@@ -4,8 +4,6 @@
 ### getMotionFromPoints()
 Function that, given two event "points," returns information comparing the two.
 
------
-
 #### Parameters
 
 ``(point1, point2)``
@@ -19,7 +17,6 @@ Function that, given two event "points," returns information comparing the two.
 }
 ```
 
------
 
 #### Output
 
@@ -37,7 +34,6 @@ Function returns an object with key/values as follows:
 ```
 *Note: When horizontal movement is 0, left/right direction is set to **'right'**. When vertical movement is 0, up/down direction is set to **down**.*
 
------
 
 ##### Example uses
 The returned information is designed to be used for drag/swipe actions. 
@@ -53,7 +49,6 @@ if (motion.yDifference > motion.xDifference) {
 }
 ```
 
------
 
 The movement between any two mouse or touch points can be compared to see if a started drag/swipe should be canceled, such as canceling a started "swipe left" if the last movement in the swipe instead went right.
 ```javascript
@@ -86,8 +81,6 @@ This is a foundational class for UI elements with one or more user interaction "
 #### Methods
 ##### constructor()
 
------
-
 ###### Properties
 There are 3 primary properties created upon construction: element, events, and actions. Actions are populated by an object passed in to the constructor (see parameters below), but 
 new classes that extend Component may have actions built into them instead. In many cases we may want Components to behave in a consistent, expected manner.
@@ -100,7 +93,6 @@ this.events = { // Storing event information as it occurs for use in actions
 };
 this.actions = {}; // Stores parameter {actions}, an object containing recognized keys that map to functions to run upon certain event listeners triggering
 ```
------
 
 ###### Parameters
 
@@ -125,11 +117,8 @@ actions be present. Missing actions are simply not performed.
 
 Additional keys/functions within the actions object can be leveraged by new classes that extend the Component class.
 
------
 
 ##### build()
-
------
 
 ###### Parameters
 ``<HTML element>``
@@ -141,7 +130,7 @@ By default the created HTML element is a div with the class "component."
 
 After the element is added to the DOM, the Component's bindEvents() method is automatically invoked.
 
------
+
 
 ##### bindEvents()
 No parameters are needed for bindEvents(). This method uses the existing Component **element**, **events**, and **actions** properties.
@@ -153,7 +142,7 @@ related to touch events are present, the touch listeners will not be activated.
 > This method can be improved if logic for tap/click events can be condensed into one. Presently there is duplication due to
 > how touch events potentially contain multiple touches while a mouse event typically represents one.
 
------
+
 
 #### Actions
 Actions is an object parameter required by the Component's constructor. The actions object is expected to be made up of key/value pairs where each value is a function, and keys 
