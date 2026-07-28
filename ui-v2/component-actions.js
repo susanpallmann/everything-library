@@ -116,6 +116,24 @@ class Component {
                         time: event.time
                     }
                 }
+
+                // If this is a mouse event, add a listener to detect if mouseup occurs, even if outside the starting element
+                const handleMouseup = (event) => {
+
+                    // check whether outside the element with event.target and myElement
+                    if (event.target !== this.element) {
+                        touchEnd.call(this, {
+                            x: event.pageX,
+                            y: event.pageY,
+                            time: Date.now(),
+                            identifier: 'click',
+                            type: 'click'
+                        });
+                        document.removeEventListener('mouseup', handleMouseup);
+                    }
+                };
+
+                document.addEventListener('mouseup', handleMouseup);
             }
         }
 
@@ -130,7 +148,7 @@ class Component {
             };
 
             // If we have point data for this touch (should always be true as this was created upon touchstart)
-            if (this.events.touches[event.identifier].points) {
+            if (this.events.touches && this.events.touches[event.identifier] && this.events.touches[event.identifier].points) {
 
                 // Add new timestamp and position to touch points
                 this.events.touches[event.identifier].points.push(touchData);
@@ -152,42 +170,51 @@ class Component {
                     this.events.touches[event.identifier]['swiping'] = true;
                 }
 
-            // If we aren't expecting this touch, throw an error
+            // If we aren't expecting this touch, assume touch originated outside of element (and do nothing)
             } else {
-                console.error('Touch move unexpected; no touch start occurred previously.');
+
             }
         }
 
         // Helper function for logic upon touchend/touchcancel/mouseup
         const touchEnd = function(event) {
 
-            // Get the existing information associated with the touch we're handling
-            const loggedTouch = this.events.touches[event.identifier];
+            // If we have no touches logged, assume touch originated outside of element (and do nothing)
+            if (!this.events.touches) {
 
-            // Clear any hold timeout
-            clearTimeout(loggedTouch.points[0].timeout);
+            } else {
+                // Get the existing information associated with the touch we're handling
+                const loggedTouch = this.events.touches[event.identifier];
 
-            // If we're expecting a drop event (we have drag actions and dragging is set to true)
-            if (this.actions.drag && this.events.touches[event.identifier].dragging === true) {
+                if (loggedTouch === undefined) {
+                    return false;
+                }
 
-                // Trigger our drag action (indicating via parameters that drop occurred)
-                this.actions.drag.call(this, true, this.events.touches[event.identifier]);
+                // Clear any hold timeout
+                clearTimeout(loggedTouch.points[0].timeout);
 
-                // If we have swipe actions and were swiping, trigger the swipe action (indicating via parameters that swipe is complete)
-            } else if (this.actions.swipe && this.events.touches[event.identifier].swiping === true) {
-                this.actions.swipe.call(this, true, this.events.touches[event.identifier]);
+                // If we're expecting a drop event (we have drag actions and dragging is set to true)
+                if (this.actions.drag && this.events.touches[event.identifier].dragging === true) {
 
-                // If we're expecting a double tap event and this is a double tap, trigger the double tap action
-            } else if (loggedTouch.points[0].doubleTapStatus && this.actions.doubleTap) {
-                this.actions.doubleTap.call(this);
+                    // Trigger our drag action (indicating via parameters that drop occurred)
+                    this.actions.drag.call(this, true, this.events.touches[event.identifier]);
 
-                // Otherwise, treat as a normal tap event
-            } else if (this.actions.tap) {
-                this.actions.tap.call(this);
+                    // If we have swipe actions and were swiping, trigger the swipe action (indicating via parameters that swipe is complete)
+                } else if (this.actions.swipe && this.events.touches[event.identifier].swiping === true) {
+                    this.actions.swipe.call(this, true, this.events.touches[event.identifier]);
+
+                    // If we're expecting a double tap event and this is a double tap, trigger the double tap action
+                } else if (loggedTouch.points[0].doubleTapStatus && this.actions.doubleTap) {
+                    this.actions.doubleTap.call(this);
+
+                    // Otherwise, treat as a normal tap event
+                } else if (this.actions.tap) {
+                    this.actions.tap.call(this);
+                }
+
+                // Once handled, clear the touch data from our logged touches
+                delete this.events.touches[event.identifier];
             }
-
-            // Once handled, clear the touch data from our logged touches
-            delete this.events.touches[event.identifier];
         };
 
         // If we have actions for touch-related events
@@ -261,6 +288,11 @@ class Component {
             // When a finger touching the screen moves
             this.element.addEventListener('touchmove', (event) => {
 
+                // Ignore the event if it didn't start on this element
+                if (event.target !== this.element) {
+                    return false;
+                }
+
                 // Get the time of the event
                 let timestamp = Date.now();
 
@@ -300,6 +332,7 @@ class Component {
 
             // Listen for click ending (mouseup)
             this.element.addEventListener('mouseup', (event) => {
+
                 // Get the time of the event
                 const timestamp = Date.now();
 
@@ -321,7 +354,7 @@ class Component {
 
             // When an active (held) click moves
             this.element.addEventListener('mousemove', (event) => {
-                
+
                 // Get the time of the event
                 const timestamp = Date.now();
 
