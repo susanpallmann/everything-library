@@ -1,7 +1,16 @@
 # Component actions
 
 ## Contents
-[How to use](#how to use)
+* [How to use](#how-to-use)
+* [Functions](#functions)
+  * [getMotionFromPoints()](#getmotionfrompoints)
+* [Classes](#classes)
+  * [Component()](#component)
+    * [Methods](#methods)
+    * [Actions](#actions)
+    * [Uses](#uses)
+* [IIFEs](#iifes)
+  * [everythingUI](#everythingui)
 
 ## How to use
 Add the following to your HTML before the closing body tag and before any code that aims to use this.
@@ -82,7 +91,7 @@ if (endMotion.direction[0] !== getPrimaryMotion(initialMotion) &&
 
 
 ## Classes
-### Component
+### Component()
 This is a foundational class for UI elements with one or more user interaction "actions" (such as click/tap, tap and hold, etc.).
 
 
