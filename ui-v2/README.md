@@ -253,6 +253,45 @@ class Toggle extends Component {
 }
 ```
 
-In the following example, the new class "Scroller" includes new actions in its constructor that are triggered by additions to the bindEvents() method.
+In the following example, the new class "Hoverer" includes new actions in its constructor that are triggered by additions to the bindEvents() method.
+```
+class Hoverer extends Component {
+    constructor() {
+        super({
+            leftClick: function () {
+                console.log('We clicked!');
+            },
+            mouseEnter: function () {
+                console.log('The mouse entered!');
+            }
+        });
+    }
+
+    bindEvents() {
+        super.bindEvents();
+        this.element.addEventListener('mouseenter', (event) => {
+            if (this.actions.mouseEnter) {
+                this.actions.mouseEnter.call(this);
+            }
+        });
+    }
+}
+```
 
 ## IIFEs
+### everythingUI
+This IIFE stores and surfaces key configurable values for triggering expected actions from user events.
+
+#### Constants
+Constant **eventConfig** allows for tweaks to sensitivity for double-clicks, double-taps, and holds. The values that can be modified are as follows:
+
+```
+doubleTapSensitivity: 10, // maximum distance (in pixels) between two consecutive tap events for the events to be considered a "double tap"
+doubleTapTimeout: 1000, // maximum time (in milliseconds I THINK) between two consecutive tap events for the events to be considered a "double tap"
+tapHoldTime: 1000, // minimum time (in milliseconds) for a prolonged tap to be considered a "tap and hold"
+doubleClickSensitivity: 5, // maximum distance (in pixels) between two consecutive click events for the events to be considered a "double click"
+doubleClickTimeout: 1000, // maximum time (in milliseconds I THINK) between two consecutive click events for the events to be considered a "double tap"
+clickHoldTime: 1000, // minimum time (in milliseconds) for a prolonged mousedown to be considered a "click and hold"
+```
+#### Global functions
+**getEventConfig()** returns the **eventConfig** constant for use within other functions and methods.
