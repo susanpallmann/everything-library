@@ -85,6 +85,9 @@ This is a foundational class for UI elements with one or more user interaction "
 
 #### Methods
 ##### constructor()
+
+-----
+
 ###### Properties
 There are 3 primary properties created upon construction: element, events, and actions. Actions are populated by an object passed in to the constructor (see parameters below), but 
 new classes that extend Component may have actions built into them instead. In many cases we may want Components to behave in a consistent, expected manner.
@@ -125,6 +128,9 @@ Additional keys/functions within the actions object can be leveraged by new clas
 -----
 
 ##### build()
+
+-----
+
 ###### Parameters
 ``<HTML element>``
 
