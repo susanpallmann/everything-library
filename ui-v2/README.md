@@ -98,17 +98,19 @@ this.actions = {}; // Stores parameter {actions}, an object containing recognize
 ``{actions}``
 
 Class expects an object containing one or more "action functions" assigned to expected keys:
-* tap
-* hold
-* drag
-* swipe
-* doubleTap
-* leftClick 
-* clickHold 
-* rightClick
-* doubleClick
-* clickDrag
-* clickSwipe
+```
+tap
+hold
+drag
+swipe
+doubleTap
+leftClick 
+clickHold 
+rightClick
+doubleClick
+clickDrag
+clickSwipe
+```
 
 Additional keys/functions can appear within the actions object without breaking any functionality, but by default these will not be run. More
 information on expected actions can be found in the dedicated section [below](#Actions). It is not required that all (or any) of these anticipated
@@ -155,25 +157,29 @@ Additional keys/functions within the actions object can be leveraged by new clas
 
 ##### Expected actions
 "Expected actions" refers to the base action functions the Component's bindEvents() method checks for. The keys for these "expected actions" are as follows:
-* tap
-* hold
-* drag
-* swipe
-* doubleTap
-* leftClick 
-* clickHold 
-* rightClick
-* doubleClick
-* clickDrag
-* clickSwipe
+```
+tap
+hold
+drag
+swipe
+doubleTap
+leftClick 
+clickHold 
+rightClick
+doubleClick
+clickDrag
+clickSwipe
+```
 
 Most of the expected actions do not have required parameters. All expected actions are called so that the Component can be passed in and interacted with using "this."
 
 The expected actions that do have required parameters are:
-* drag
-* swipe
-* clickDrag
-* clickSwipe
+```
+drag
+swipe
+clickDrag
+clickSwipe
+```
 
 For these actions, the expected parameters are:
 
