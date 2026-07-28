@@ -105,7 +105,7 @@ new classes that extend Component may have actions built into them instead. In m
 this.element = [HTML element]; // HTML element representing this Component
 this.events = {}; // Storing event information as it occurs for use in actions
 this.flagTouched = [true/false]; // Mark touch events so that duplicative click events are prevented
-this.actions = {}; // Stores parameter {actions}, an object containing recognized keys that map to functions to run upon certain event listeners triggering
+this.actions = {}; // Stores parameter {actions}, a set of functions to run upon certain event listeners triggering
 ```
 
 ###### Parameters
