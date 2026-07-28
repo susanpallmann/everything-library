@@ -1,5 +1,11 @@
 # Component actions
 
+## Use
+Add the following to your HTML before the closing body tag and before any code that aims to use this.
+```html
+<script type="text/javascript" src="susanpallmann.github.io/everything-library/ui-v2/component-actions.js"></script>
+```
+
 ## Functions
 ### getMotionFromPoints()
 Function that, given two event "points," returns information comparing the two.
