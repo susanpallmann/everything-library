@@ -288,3 +288,7 @@ tapHoldTime: 1000, // minimum time (in milliseconds) for a prolonged tap to be c
 ```
 #### Global functions
 **getEventConfig()** returns the **eventConfig** constant for use within other functions and methods.
+
+## To-do
+### Issues
+[ ] Mouse movements that move outside of the element aren't tracked; they may need to be for accurate swipe and drag behavior.
