@@ -144,15 +144,10 @@ After the element is added to the DOM, the Component's bindEvents() method is au
 
 
 ##### bindEvents()
-No parameters are needed for bindEvents(). This method uses the existing Component **element**, **events**, and **actions** properties.
+No parameters are needed for bindEvents(). This method uses the existing Component **element**, **events**, **flagTouched**, and **actions** properties.
 
 Event listeners for mouse and touch events are only activated if there are any expected actions that utilize these events. If no expected actions
-related to touch events are present, the touch listeners will not be activated.
-
-> [!NOTE]
-> This method can be improved if logic for tap/click events can be condensed into one. Presently there is duplication due to
-> how touch events potentially contain multiple touches while a mouse event typically represents one.
-
+related to mouse/touch events are present, the related listeners will not be activated.
 
 
 #### Actions
@@ -211,19 +206,15 @@ redComponent.build(destination);
 
 The following example creates an element that, when dragged, turns red, and when dropped after dragging, turns blue and logs the direction and travel distance dragged to the console.
 ```javascript
-const sharedDragLogic = function(flagComplete, interaction) {
-  if (flagComplete) {
+const dragComponent = new Component({
+  drag: function(flagComplete, interaction) {
+    if (flagComplete) {
       let motion = getMotionFromPoints(interaction.points[0], interaction.points[interaction.points.length - 1]);
       console.log(`Traveled ${motion.trueDifference}px ${motion.directions[1]} and to the ${motion.directions[0]}.`);
       this.element.style.backgroundColor = 'blue';
     } else {
       this.element.style.backgroundColor = 'red';
     }
-}
-
-const dragComponent = new Component({
-  drag: function(flagComplete, interaction) {
-    sharedDragLogic.call(this, flagComplete, interaction);
   }
 });
 const destination = document.getElementById('container');
@@ -288,7 +279,7 @@ class Hoverer extends Component {
 This IIFE stores and surfaces key configurable values for triggering expected actions from user events.
 
 #### Constants
-Constant **eventConfig** allows for tweaks to sensitivity for double-clicks, double-taps, and holds. The values that can be modified are as follows:
+Constant **eventConfig** allows for tweaks to sensitivity for double-taps and holds. The values that can be modified are as follows:
 
 ```javascript
 doubleTapSensitivity: 10, // maximum distance (in pixels) between two consecutive tap events for the events to be considered a "double tap"
