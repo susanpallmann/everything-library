@@ -320,10 +320,10 @@ Constant **eventConfig** allows for tweaks to sensitivity for double-clicks, dou
 
 ```javascript
 doubleTapSensitivity: 10, // maximum distance (in pixels) between two consecutive tap events for the events to be considered a "double tap"
-doubleTapTimeout: 1000, // maximum time (in milliseconds I THINK) between two consecutive tap events for the events to be considered a "double tap"
+doubleTapTimeout: 1000, // maximum time (in milliseconds) between two consecutive tap events for the events to be considered a "double tap"
 tapHoldTime: 1000, // minimum time (in milliseconds) for a prolonged tap to be considered a "tap and hold"
 doubleClickSensitivity: 5, // maximum distance (in pixels) between two consecutive click events for the events to be considered a "double click"
-doubleClickTimeout: 1000, // maximum time (in milliseconds I THINK) between two consecutive click events for the events to be considered a "double tap"
+doubleClickTimeout: 1000, // maximum time (in milliseconds) between two consecutive click events for the events to be considered a "double tap"
 clickHoldTime: 1000, // minimum time (in milliseconds) for a prolonged mousedown to be considered a "click and hold"
 ```
 #### Global functions
