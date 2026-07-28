@@ -76,7 +76,6 @@ if (endMotion.direction[0] !== getPrimaryMotion(initialMotion) &&
 ### Component
 This is a foundational class for UI elements with one or more user interaction "actions" (such as click/tap, tap and hold, etc.).
 
------
 
 #### Methods
 ##### constructor()
@@ -188,7 +187,6 @@ swipe events (for example, partially moving a menu that will be closed if the us
 history. This history includes the key **points** which maps to an array of logged movements and flags. Used in tandem with the function **getMotionFromPoints()** the drag/swipe action functions can determine what behavior is appropriate 
 based on the user's movement and speed during the drag or swipe.
 
------
 
 #### Uses
 The Component class can be used on its own to make UI elements that respond to expected user actions. 
