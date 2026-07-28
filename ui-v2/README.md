@@ -76,11 +76,13 @@ if (endMotion.direction[0] !== getPrimaryMotion(initialMotion) &&
 }
 ```
 
------
 
 ## Classes
 ### Component
 This is a foundational class for UI elements with one or more user interaction "actions" (such as click/tap, tap and hold, etc.).
+
+-----
+
 #### Methods
 ##### constructor()
 ###### Properties
@@ -95,19 +97,33 @@ this.events = { // Storing event information as it occurs for use in actions
 };
 this.actions = {}; // Stores parameter {actions}, an object containing recognized keys that map to functions to run upon certain event listeners triggering
 ```
+-----
+
 ###### Parameters
+
 ``{actions}``
+
 Class expects an object containing one or more "action functions" assigned to expected keys:
 > tap
+> 
 > hold
+> 
 > drag
+> 
 > swipe
+> 
 > doubleTap
+> 
 > leftClick
+> 
 > clickHold
+> 
 > rightClick
+> 
 > doubleClick
+> 
 > clickDrag
+> 
 > clickSwipe
 
 Additional keys/functions can appear within the actions object without breaking any functionality, but by default these will not be run. More
@@ -156,23 +172,36 @@ Additional keys/functions within the actions object can be leveraged by new clas
 ##### Expected actions
 "Expected actions" refers to the base action functions the Component's bindEvents() method checks for. The keys for these "expected actions" are as follows:
 > tap
+> 
 > hold
+> 
 > drag
+> 
 > swipe
+> 
 > doubleTap
+> 
 > leftClick
+> 
 > clickHold
+> 
 > rightClick
+> 
 > doubleClick
+> 
 > clickDrag
+> 
 > clickSwipe
 
 Most of the expected actions do not have required parameters. All expected actions are called so that the Component can be passed in and interacted with using "this."
 
 The expected actions that do have required parameters are:
 > drag
+> 
 > swipe
+> 
 > clickDrag
+> 
 > clickSwipe
 
 For these actions, the expected parameters are:
