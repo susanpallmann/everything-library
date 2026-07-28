@@ -4,6 +4,7 @@
 ### getMotionFromPoints()
 Function that, given two event "points," returns information comparing the two.
 
+-----
 
 #### Parameters
 
@@ -17,6 +18,8 @@ Function that, given two event "points," returns information comparing the two.
   time: [number] // timestamp when event occurred
 }
 ```
+
+-----
 
 #### Output
 
@@ -34,6 +37,8 @@ Function returns an object with key/values as follows:
 ```
 *Note: When horizontal movement is 0, left/right direction is set to **'right'**. When vertical movement is 0, up/down direction is set to **down**.*
 
+-----
+
 ##### Example uses
 The returned information is designed to be used for drag/swipe actions. 
 
@@ -47,7 +52,9 @@ if (motion.yDifference > motion.xDifference) {
   primaryDirection = motion.directions[1];
 }
 ```
+
 -----
+
 The movement between any two mouse or touch points can be compared to see if a started drag/swipe should be canceled, such as canceling a started "swipe left" if the last movement in the swipe instead went right.
 ```javascript
 const initialMotion = getMotionFromPoints(eventPoints[0], eventPoints[1]);
@@ -68,6 +75,8 @@ if (endMotion.direction[0] !== getPrimaryMotion(initialMotion) &&
   // Swipe completed successfully
 }
 ```
+
+-----
 
 ## Classes
 ### Component
