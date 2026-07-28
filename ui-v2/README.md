@@ -99,15 +99,12 @@ This is a foundational class for UI elements with one or more user interaction "
 ##### constructor()
 
 ###### Properties
-There are 3 primary properties created upon construction: element, events, and actions. Actions are populated by an object passed in to the constructor (see parameters below), but 
+There are 4 primary properties created upon construction: element, events, flagTouched, and actions. Actions are populated by an object passed in to the constructor (see parameters below), but 
 new classes that extend Component may have actions built into them instead. In many cases we may want Components to behave in a consistent, expected manner.
 ```javascript
 this.element = [HTML element]; // HTML element representing this Component
-this.events = { // Storing event information as it occurs for use in actions
-  doubleTouchListeners: {}, // Initializing a place to store one or more listeners for double taps as these are stored by ID
-  touches: {} // Initializing a place to store one or more touch events as these are stored by ID
-  // doubleClickListner and click are created later (if applicable) in the bindEvents() method
-};
+this.events = {}; // Storing event information as it occurs for use in actions
+this.flagTouched = [true/false]; // Mark touch events so that duplicative click events are prevented
 this.actions = {}; // Stores parameter {actions}, an object containing recognized keys that map to functions to run upon certain event listeners triggering
 ```
 
@@ -118,16 +115,11 @@ this.actions = {}; // Stores parameter {actions}, an object containing recognize
 Class expects an object containing one or more "action functions" assigned to expected keys:
 ```
 tap
+doubleTap
 hold
 drag
 swipe
-doubleTap
-leftClick 
-clickHold 
 rightClick
-doubleClick
-clickDrag
-clickSwipe
 ```
 
 Additional keys/functions can appear within the actions object without breaking any functionality, but by default these will not be run. More
@@ -177,16 +169,11 @@ Additional keys/functions within the actions object can be leveraged by new clas
 "Expected actions" refers to the base action functions the Component's bindEvents() method checks for. The keys for these "expected actions" are as follows:
 ```
 tap
+doubleTap
 hold
 drag
 swipe
-doubleTap
-leftClick 
-clickHold 
 rightClick
-doubleClick
-clickDrag
-clickSwipe
 ```
 
 Most of the expected actions do not have required parameters. All expected actions are called so that the Component can be passed in and interacted with using "this."
@@ -195,8 +182,6 @@ The expected actions that do have required parameters are:
 ```
 drag
 swipe
-clickDrag
-clickSwipe
 ```
 
 For these actions, the expected parameters are:
@@ -218,8 +203,7 @@ The Component class can be used on its own to make UI elements that respond to e
 The following example creates an element that, when clicked or tapped, turns red.
 ```javascript
 const redComponent = new Component({
-  tap: function() {this.element.style.backgroundColor = 'red'},
-  leftClick: function() {this.element.style.backgroundColor = 'red'}
+  tap: function() {this.element.style.backgroundColor = 'red'}
 });
 const destination = document.getElementById('container');
 redComponent.build(destination);
@@ -240,10 +224,7 @@ const sharedDragLogic = function(flagComplete, interaction) {
 const dragComponent = new Component({
   drag: function(flagComplete, interaction) {
     sharedDragLogic.call(this, flagComplete, interaction);
-  },
-  clickDrag: function(flagComplete, interaction) {
-    sharedDragLogic.call(this, flagComplete, interaction);
-  },
+  }
 });
 const destination = document.getElementById('container');
 dragComponent.build(destination);
@@ -257,15 +238,6 @@ class Toggle extends Component {
   constructor() {
     super({
       tap: function () {
-        for (const child of this.element.children) {
-          if (child.textContent === 'Off') {
-            child.textContent = "On";
-          } else {
-            child.textContent = "Off";
-          }
-        }
-      },
-      leftClick: function () {
         for (const child of this.element.children) {
           if (child.textContent === 'Off') {
             child.textContent = "On";
@@ -291,7 +263,7 @@ In the following example, the new class "Hoverer" includes new actions in its co
 class Hoverer extends Component {
     constructor() {
         super({
-            leftClick: function () {
+            tap: function () {
                 console.log('We clicked!');
             },
             mouseEnter: function () {
@@ -322,9 +294,6 @@ Constant **eventConfig** allows for tweaks to sensitivity for double-clicks, dou
 doubleTapSensitivity: 10, // maximum distance (in pixels) between two consecutive tap events for the events to be considered a "double tap"
 doubleTapTimeout: 1000, // maximum time (in milliseconds) between two consecutive tap events for the events to be considered a "double tap"
 tapHoldTime: 1000, // minimum time (in milliseconds) for a prolonged tap to be considered a "tap and hold"
-doubleClickSensitivity: 5, // maximum distance (in pixels) between two consecutive click events for the events to be considered a "double click"
-doubleClickTimeout: 1000, // maximum time (in milliseconds) between two consecutive click events for the events to be considered a "double tap"
-clickHoldTime: 1000, // minimum time (in milliseconds) for a prolonged mousedown to be considered a "click and hold"
 ```
 #### Global functions
 **getEventConfig()** returns the **eventConfig** constant for use within other functions and methods.
