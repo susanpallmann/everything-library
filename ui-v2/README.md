@@ -291,4 +291,4 @@ tapHoldTime: 1000, // minimum time (in milliseconds) for a prolonged tap to be c
 
 ## To-do
 ### Issues
-[ ] Mouse movements that move outside of the element aren't tracked; they may need to be for accurate swipe and drag behavior.
+- [ ] Mouse movements that travel outside of the element aren't tracked; they may need to be for accurate swipe and drag behavior.
