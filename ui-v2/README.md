@@ -10,11 +10,11 @@ Function that, given two event "points," returns information comparing the two.
 ``(point1, point2)``
 
 **point1** must have occurred before **point2** chronologically (point1.time <= point2.time). Both points should be objects with key/values as follows:
-```
+```javascript
 {
-  x: <number>, // representing horizontal position of touch or mouse event
-  y: <number>, // representing vertical position of touch or mouse event
-  time: <number> // timestamp when event occurred
+  x: [number], // representing horizontal position of touch or mouse event
+  y: [number], // representing vertical position of touch or mouse event
+  time: [number] // timestamp when event occurred
 }
 ```
 
@@ -23,13 +23,13 @@ Function that, given two event "points," returns information comparing the two.
 ``{object}``
 
 Function returns an object with key/values as follows:
-```
+```javascript
 {
-  time: <number>, // difference in time in milliseconds
-  yDifference: <number>, // vertical difference in position
-  xDifference: <number>, // horizontal difference in position
-  trueDifference: <number>, // true difference in position (calculated hypotenuse based on xDifference and yDifference
-  directions: [<left/right>, <up/down>] // human-friendly description of directional movement
+  time: [number], // difference in time in milliseconds
+  yDifference: [number], // vertical difference in position
+  xDifference: [number], // horizontal difference in position
+  trueDifference: [number], // true difference in position (calculated hypotenuse based on xDifference and yDifference
+  directions: [[left/right], [up/down]] // human-friendly description of directional movement
 }
 ```
 *Note: When horizontal movement is 0, left/right direction is set to **'right'**. When vertical movement is 0, up/down direction is set to **down**.*
@@ -38,7 +38,7 @@ Function returns an object with key/values as follows:
 The returned information is designed to be used for drag/swipe actions. 
 
 The inclusion of both **xDifference** and **yDifference** can be used to determine if an action was *more* left/right than up/down and vice versa.
-```
+```javascript
 const motion = getMotionFromPoints(startPoint, endPoint);
 
 let primaryDirection = motion.directions[0];
@@ -49,7 +49,7 @@ if (motion.yDifference > motion.xDifference) {
 ```
 -----
 The movement between any two mouse or touch points can be compared to see if a started drag/swipe should be canceled, such as canceling a started "swipe left" if the last movement in the swipe instead went right.
-```
+```javascript
 const initialMotion = getMotionFromPoints(eventPoints[0], eventPoints[1]);
 const endMotion = getMotionFromPoints(eventPoints[eventPoints.length - 2], eventPoints[eventPoints.length - 1]);
 
@@ -77,8 +77,8 @@ This is a foundational class for UI elements with one or more user interaction "
 ###### Properties
 There are 3 primary properties created upon construction: element, events, and actions. Actions are populated by an object passed in to the constructor (see parameters below), but 
 new classes that extend Component may have actions built into them instead. In many cases we may want Components to behave in a consistent, expected manner.
-```
-this.element = <HTML element>; // HTML element representing this Component
+```javascript
+this.element = [HTML element]; // HTML element representing this Component
 this.events = { // Storing event information as it occurs for use in actions
   doubleTouchListeners: {}, // Initializing a place to store one or more listeners for double taps as these are stored by ID
   touches: {} // Initializing a place to store one or more touch events as these are stored by ID
@@ -112,7 +112,8 @@ Additional keys/functions within the actions object can be leveraged by new clas
 ##### build()
 ###### Parameters
 ``<HTML element>``
-build method takes a provided HTML element and appends an element representing the Component to it. The Component's element is assigned to the 
+
+**build()** method takes a provided HTML element and appends an element representing the Component to it. The Component's element is assigned to the 
 corresponding property at this time as well.
 
 By default the created HTML element is a div with the class "component."
@@ -183,7 +184,7 @@ based on the user's movement and speed during the drag or swipe.
 The Component class can be used on its own to make UI elements that respond to expected user actions. 
 
 The following example creates an element that, when clicked or tapped, turns red.
-```
+```javascript
 const redComponent = new Component({
   tap: function() {this.element.style.backgroundColor = 'red'},
   leftClick: function() {this.element.style.backgroundColor = 'red'}
@@ -193,7 +194,7 @@ redComponent.build(destination);
 ```
 
 The following example creates an element that, when dragged, turns red, and when dropped after dragging, turns blue and logs the direction and travel distance dragged to the console.
-```
+```javascript
 const sharedDragLogic = function(flagComplete, interaction) {
   if (flagComplete) {
       let motion = getMotionFromPoints(interaction.points[0], interaction.points[interaction.points.length - 1]);
@@ -219,7 +220,7 @@ dragComponent.build(destination);
 Classes that extend Component can also be created to allow for different HTML elements, consistent action functions, and/or new types of actions.
 
 In the following example, the new class "Toggle" creates a different HTML element in its build() method and actions are preset and limited to click and tap events.
-```
+```javascript
 class Toggle extends Component {
   constructor() {
     super({
@@ -254,7 +255,7 @@ class Toggle extends Component {
 ```
 
 In the following example, the new class "Hoverer" includes new actions in its constructor that are triggered by additions to the bindEvents() method.
-```
+```javascript
 class Hoverer extends Component {
     constructor() {
         super({
@@ -285,7 +286,7 @@ This IIFE stores and surfaces key configurable values for triggering expected ac
 #### Constants
 Constant **eventConfig** allows for tweaks to sensitivity for double-clicks, double-taps, and holds. The values that can be modified are as follows:
 
-```
+```javascript
 doubleTapSensitivity: 10, // maximum distance (in pixels) between two consecutive tap events for the events to be considered a "double tap"
 doubleTapTimeout: 1000, // maximum time (in milliseconds I THINK) between two consecutive tap events for the events to be considered a "double tap"
 tapHoldTime: 1000, // minimum time (in milliseconds) for a prolonged tap to be considered a "tap and hold"
