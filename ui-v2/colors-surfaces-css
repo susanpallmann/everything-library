@@ -1,0 +1,117 @@
+:root {
+    /* Base color HSL values | Primary */
+    --primary-h: 257;
+    --primary-s: 28;
+
+    /* Base color HSL values | Secondary */
+    --secondary-h: 240;
+    --secondary-s: 10;
+
+    /* Base color HSL values | Tertiary */
+    --tertiary-h: 16;
+    --tertiary-s: 80;
+
+    /* Calculated lightness midtones */
+    --primary-l:   calc(50 + (((( 2 + (( 2 - ((( 0.059 * mod(abs(mod(( var(--primary-h) + 30), 60) - 30), 30)) * (0.059 * mod(abs(mod(( var(--primary-h) + 30), 60) - 30), 30))) + (0.045 *mod(abs(mod(( var(--primary-h) + 30), 60) - 30), 30)) + 0) / 2) * (abs(mod( var(--primary-h), 120) - 60) - 30) / max(abs(abs(mod( var(--primary-h), 120) - 60) - 30), 1))) * 7 / 2 - 5) * 1.35) + ((58 + ((79 - (((((0.049 * (abs(mod(( var(--primary-h) + 160), 360) - 180) - 90)) * (0.049 * (abs(mod(( var(--primary-h) + 160), 360) - 180) - 90))) + (0.025 * (abs(mod(( var(--primary-h) + 160 ), 360) - 180) - 90))) - 7) + 64)) * ((abs(mod(( var(--primary-h) + 70), 360) - 180) - 90) / max(abs(abs(mod(( var(--primary-h) + 70), 360) - 180) - 90), 1)))) * 0.75 - 2) - 50) / 100 * var(--primary-s));
+    --secondary-l: calc(50 + (((( 2 + (( 2 - ((( 0.059 * mod(abs(mod(( var(--secondary-h) + 30), 60) - 30), 30)) * (0.059 * mod(abs(mod(( var(--secondary-h) + 30), 60) - 30), 30))) + (0.045 *mod(abs(mod(( var(--secondary-h) + 30), 60) - 30), 30)) + 0) / 2) * (abs(mod( var(--secondary-h), 120) - 60) - 30) / max(abs(abs(mod( var(--secondary-h), 120) - 60) - 30), 1))) * 7 / 2 - 5) * 1.35) + ((58 + ((79 - (((((0.049 * (abs(mod(( var(--secondary-h) + 160), 360) - 180) - 90)) * (0.049 * (abs(mod(( var(--secondary-h) + 160), 360) - 180) - 90))) + (0.025 * (abs(mod(( var(--secondary-h) + 160 ), 360) - 180) - 90))) - 7) + 64)) * ((abs(mod(( var(--secondary-h) + 70), 360) - 180) - 90) / max(abs(abs(mod(( var(--secondary-h) + 70), 360) - 180) - 90), 1)))) * 0.75 - 2) - 50) / 100 * var(--secondary-s));
+    --tertiary-l:  calc(50 + (((( 2 + (( 2 - ((( 0.059 * mod(abs(mod(( var(--tertiary-h) + 30), 60) - 30), 30)) * (0.059 * mod(abs(mod(( var(--tertiary-h) + 30), 60) - 30), 30))) + (0.045 *mod(abs(mod(( var(--tertiary-h) + 30), 60) - 30), 30)) + 0) / 2) * (abs(mod( var(--tertiary-h), 120) - 60) - 30) / max(abs(abs(mod( var(--tertiary-h), 120) - 60) - 30), 1))) * 7 / 2 - 5) * 1.35) + ((58 + ((79 - (((((0.049 * (abs(mod(( var(--tertiary-h) + 160), 360) - 180) - 90)) * (0.049 * (abs(mod(( var(--tertiary-h) + 160), 360) - 180) - 90))) + (0.025 * (abs(mod(( var(--tertiary-h) + 160 ), 360) - 180) - 90))) - 7) + 64)) * ((abs(mod(( var(--tertiary-h) + 70), 360) - 180) - 90) / max(abs(abs(mod(( var(--tertiary-h) + 70), 360) - 180) - 90), 1)))) * 0.75 - 2) - 50) / 100 * var(--tertiary-s));
+
+    /* Calculated color palette | Primary */
+    --p-00:  hsl( var(--primary-h) calc(var(--primary-s) + ((clamp(0, var(--primary-s) + 30, 100) - var(--primary-s)) / 50 * 50)) calc((var(--primary-l) - 0) / 50 * 0));
+    --p-10:  hsl( var(--primary-h) calc(var(--primary-s) + ((clamp(0, var(--primary-s) + 30, 100) - var(--primary-s)) / 50 * 30)) calc((var(--primary-l) - 0) / 50 * 10));
+    --p-20:  hsl( var(--primary-h) calc(var(--primary-s) + ((clamp(0, var(--primary-s) + 30, 100) - var(--primary-s)) / 50 * 10)) calc((var(--primary-l) - 0) / 50 * 20));
+    --p-30:  hsl( var(--primary-h) calc(var(--primary-s) + ((clamp(0, var(--primary-s) + 30, 100) - var(--primary-s)) / 50 * 7)) calc((var(--primary-l) - 0) / 50 * 30));
+    --p-40:  hsl( var(--primary-h) calc(var(--primary-s) + ((clamp(0, var(--primary-s) + 30, 100) - var(--primary-s)) / 50 * 2)) calc((var(--primary-l) - 0) / 50 * 40));
+    --p-50:  hsl( var(--primary-h) calc(var(--primary-s)) var(--primary-l));
+    --p-60:  hsl( var(--primary-h) calc(var(--primary-s) + ((clamp(0, var(--primary-s) + 70, 100) - var(--primary-s)) / 50 * 2)) calc(var(--primary-l) + ((100 - var(--primary-l)) / 50 * 10)));
+    --p-70:  hsl( var(--primary-h) calc(var(--primary-s) + ((clamp(0, var(--primary-s) + 70, 100) - var(--primary-s)) / 50 * 7)) calc(var(--primary-l) + ((100 - var(--primary-l)) / 50 * 20)));
+    --p-80:  hsl( var(--primary-h) calc(var(--primary-s) + ((clamp(0, var(--primary-s) + 70, 100) - var(--primary-s)) / 50 * 20)) calc(var(--primary-l) + ((100 - var(--primary-l)) / 50 * 30)));
+    --p-85:  hsl( var(--primary-h) calc(var(--primary-s) + ((clamp(0, var(--primary-s) + 70, 100) - var(--primary-s)) / 50 * 25)) calc(var(--primary-l) + ((100 - var(--primary-l)) / 50 * 35)));
+    --p-90:  hsl( var(--primary-h) calc(var(--primary-s) + ((clamp(0, var(--primary-s) + 70, 100) - var(--primary-s)) / 50 * 30)) calc(var(--primary-l) + ((100 - var(--primary-l)) / 50 * 40)));
+    --p-95:  hsl( var(--primary-h) calc(var(--primary-s) + ((clamp(0, var(--primary-s) + 70, 100) - var(--primary-s)) / 50 * 40)) calc(var(--primary-l) + ((100 - var(--primary-l)) / 50 * 45)));
+    --p-98:  hsl( var(--primary-h) calc(var(--primary-s) + ((clamp(0, var(--primary-s) + 70, 100) - var(--primary-s)) / 50 * 48)) calc(var(--primary-l) + ((100 - var(--primary-l)) / 50 * 48)));
+    --p-100: hsl( var(--primary-h) calc(var(--primary-s) + ((clamp(0, var(--primary-s) + 70, 100) - var(--primary-s)) / 50 * 50)) calc(var(--primary-l) + ((100 - var(--primary-l)) / 50 * 50)));
+
+    /* Calculated color palette | Secondary */
+    --s-00:  hsl( var(--secondary-h) calc(var(--secondary-s) + ((clamp(0, var(--secondary-s) + 30, 100) - var(--secondary-s)) / 50 * 50)) calc((var(--secondary-l) - 0) / 50 * 0));
+    --s-10:  hsl( var(--secondary-h) calc(var(--secondary-s) + ((clamp(0, var(--secondary-s) + 30, 100) - var(--secondary-s)) / 50 * 30)) calc((var(--secondary-l) - 0) / 50 * 10));
+    --s-20:  hsl( var(--secondary-h) calc(var(--secondary-s) + ((clamp(0, var(--secondary-s) + 30, 100) - var(--secondary-s)) / 50 * 10)) calc((var(--secondary-l) - 0) / 50 * 20));
+    --s-30:  hsl( var(--secondary-h) calc(var(--secondary-s) + ((clamp(0, var(--secondary-s) + 30, 100) - var(--secondary-s)) / 50 * 7)) calc((var(--secondary-l) - 0) / 50 * 30));
+    --s-40:  hsl( var(--secondary-h) calc(var(--secondary-s) + ((clamp(0, var(--secondary-s) + 30, 100) - var(--secondary-s)) / 50 * 2)) calc((var(--secondary-l) - 0) / 50 * 40));
+    --s-50:  hsl( var(--secondary-h) calc(var(--secondary-s)) var(--secondary-l));
+    --s-60:  hsl( var(--secondary-h) calc(var(--secondary-s) + ((clamp(0, var(--secondary-s) + 70, 100) - var(--secondary-s)) / 50 * 2)) calc(var(--secondary-l) + ((100 - var(--secondary-l)) / 50 * 10)));
+    --s-70:  hsl( var(--secondary-h) calc(var(--secondary-s) + ((clamp(0, var(--secondary-s) + 70, 100) - var(--secondary-s)) / 50 * 7)) calc(var(--secondary-l) + ((100 - var(--secondary-l)) / 50 * 20)));
+    --s-80:  hsl( var(--secondary-h) calc(var(--secondary-s) + ((clamp(0, var(--secondary-s) + 70, 100) - var(--secondary-s)) / 50 * 20)) calc(var(--secondary-l) + ((100 - var(--secondary-l)) / 50 * 30)));
+    --s-85:  hsl( var(--secondary-h) calc(var(--secondary-s) + ((clamp(0, var(--secondary-s) + 70, 100) - var(--secondary-s)) / 50 * 25)) calc(var(--secondary-l) + ((100 - var(--secondary-l)) / 50 * 35)));
+    --s-90:  hsl( var(--secondary-h) calc(var(--secondary-s) + ((clamp(0, var(--secondary-s) + 70, 100) - var(--secondary-s)) / 50 * 30)) calc(var(--secondary-l) + ((100 - var(--secondary-l)) / 50 * 40)));
+    --s-95:  hsl( var(--secondary-h) calc(var(--secondary-s) + ((clamp(0, var(--secondary-s) + 70, 100) - var(--secondary-s)) / 50 * 40)) calc(var(--secondary-l) + ((100 - var(--secondary-l)) / 50 * 45)));
+    --s-98:  hsl( var(--secondary-h) calc(var(--secondary-s) + ((clamp(0, var(--secondary-s) + 70, 100) - var(--secondary-s)) / 50 * 48)) calc(var(--secondary-l) + ((100 - var(--secondary-l)) / 50 * 48)));
+    --s-100: hsl( var(--secondary-h) calc(var(--secondary-s) + ((clamp(0, var(--secondary-s) + 70, 100) - var(--secondary-s)) / 50 * 50)) calc(var(--secondary-l) + ((100 - var(--secondary-l)) / 50 * 50)));
+
+    /* Calculated color palette | Tertiary */
+    --t-00:  hsl( var(--tertiary-h) calc(var(--tertiary-s) + ((clamp(0, var(--tertiary-s) + 30, 100) - var(--tertiary-s)) / 50 * 50)) calc((var(--tertiary-l) - 0) / 50 * 0));
+    --t-10:  hsl( var(--tertiary-h) calc(var(--tertiary-s) + ((clamp(0, var(--tertiary-s) + 30, 100) - var(--tertiary-s)) / 50 * 30)) calc((var(--tertiary-l) - 0) / 50 * 10));
+    --t-20:  hsl( var(--tertiary-h) calc(var(--tertiary-s) + ((clamp(0, var(--tertiary-s) + 30, 100) - var(--tertiary-s)) / 50 * 10)) calc((var(--tertiary-l) - 0) / 50 * 20));
+    --t-30:  hsl( var(--tertiary-h) calc(var(--tertiary-s) + ((clamp(0, var(--tertiary-s) + 30, 100) - var(--tertiary-s)) / 50 * 7)) calc((var(--tertiary-l) - 0) / 50 * 30));
+    --t-40:  hsl( var(--tertiary-h) calc(var(--tertiary-s) + ((clamp(0, var(--tertiary-s) + 30, 100) - var(--tertiary-s)) / 50 * 2)) calc((var(--tertiary-l) - 0) / 50 * 40));
+    --t-50:  hsl( var(--tertiary-h) calc(var(--tertiary-s)) var(--tertiary-l));
+    --t-60:  hsl( var(--tertiary-h) calc(var(--tertiary-s) + ((clamp(0, var(--tertiary-s) + 70, 100) - var(--tertiary-s)) / 50 * 2)) calc(var(--tertiary-l) + ((100 - var(--tertiary-l)) / 50 * 10)));
+    --t-70:  hsl( var(--tertiary-h) calc(var(--tertiary-s) + ((clamp(0, var(--tertiary-s) + 70, 100) - var(--tertiary-s)) / 50 * 7)) calc(var(--tertiary-l) + ((100 - var(--tertiary-l)) / 50 * 20)));
+    --t-80:  hsl( var(--tertiary-h) calc(var(--tertiary-s) + ((clamp(0, var(--tertiary-s) + 70, 100) - var(--tertiary-s)) / 50 * 20)) calc(var(--tertiary-l) + ((100 - var(--tertiary-l)) / 50 * 30)));
+    --t-85:  hsl( var(--tertiary-h) calc(var(--tertiary-s) + ((clamp(0, var(--tertiary-s) + 70, 100) - var(--tertiary-s)) / 50 * 25)) calc(var(--tertiary-l) + ((100 - var(--tertiary-l)) / 50 * 35)));
+    --t-90:  hsl( var(--tertiary-h) calc(var(--tertiary-s) + ((clamp(0, var(--tertiary-s) + 70, 100) - var(--tertiary-s)) / 50 * 30)) calc(var(--tertiary-l) + ((100 - var(--tertiary-l)) / 50 * 40)));
+    --t-95:  hsl( var(--tertiary-h) calc(var(--tertiary-s) + ((clamp(0, var(--tertiary-s) + 70, 100) - var(--tertiary-s)) / 50 * 40)) calc(var(--tertiary-l) + ((100 - var(--tertiary-l)) / 50 * 45)));
+    --t-98:  hsl( var(--tertiary-h) calc(var(--tertiary-s) + ((clamp(0, var(--tertiary-s) + 70, 100) - var(--tertiary-s)) / 50 * 48)) calc(var(--tertiary-l) + ((100 - var(--tertiary-l)) / 50 * 48)));
+    --t-100: hsl( var(--tertiary-h) calc(var(--tertiary-s) + ((clamp(0, var(--tertiary-s) + 70, 100) - var(--tertiary-s)) / 50 * 50)) calc(var(--tertiary-l) + ((100 - var(--tertiary-l)) / 50 * 50)));
+
+    /* Surface elevation color tokens */
+    --surface-00: hsl(0 0 100%);
+    --surface-01: hsl(0 0 96%);
+    --surface-02: hsl(0 0 94%);
+    --surface-03: hsl(0 0 92%);
+    --surface-04: hsl(0 0 90%);
+    --surface-05: hsl(0 0 87%);
+
+    /* Controls elevation-level increments to styles */
+    --surface-level: 0;
+}
+
+/* Surface elevation/layering styles */
+/* todo: replace :is(.surface) with lists of component classes that are considered surfaces (like cards) */
+
+:is(.surface) {
+    --surface-level: 1;
+    background-color: var(--surface-00);
+    padding: 24px;
+    border-radius: 12px;
+}
+
+:is(.surface) :is(.surface) {
+    --surface-level: 1;
+    background-color: var(--surface-01);
+}
+
+:is(.surface) :is(.surface) :is(.surface) {
+    --surface-level: 2;
+    background-color: var(--surface-02);
+}
+
+:is(.surface) :is(.surface) :is(.surface) :is(.surface) {
+    --surface-level: 3;
+    background-color: var(--surface-03);
+}
+
+:is(.surface) :is(.surface) :is(.surface) :is(.surface) :is(.surface) {
+    --surface-level: 4;
+    background-color: var(--surface-04);
+}
+
+:is(.surface) :is(.surface) :is(.surface) :is(.surface) :is(.surface) :is(.surface) {
+    --surface-level: 5;
+    background-color: var(--surface-05);
+}
+
+:is(.surface) :is(.surface) :is(.surface) :is(.surface) :is(.surface) :is(.surface) :is(.surface) {
+    --surface-level: 6;
+    background-color: var(--surface-06);
+}
