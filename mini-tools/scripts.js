@@ -203,6 +203,42 @@ function generateDeterminerTest(word) {
     return tests;
 }
 
+function generatePronounTest(word) {
+    const tests = [
+        {test: `<strong>${word}</strong> ran to the store.`, tags: ['pronoun', 'subject-pronoun']},
+        {test: `The cat looked at <strong>${word}</strong>.`, tags: ['pronoun', 'object-pronoun']},
+        {test: `That is <strong>${word}</strong> book.`, tags: ['pronoun', 'possessive-pronoun']},
+        {test: `None of these`, tags: ['not-pronoun']}
+    ];
+    return tests;
+}
+
+function generatePrepositionTest(word) {
+    const tests = [
+        {test: `The cat jumped <strong>${word}</strong> the box.`, tags: ['preposition']},
+        {test: `The book is <strong>${word}</strong> the table.`, tags: ['preposition', 'location-preposition']},
+        {test: `None of these`, tags: ['not-preposition']}
+    ];
+    return tests;
+}
+
+function generateConjunctionTest(word) {
+    const tests = [
+        {test: `The cat wanted to sleep, <strong>${word}</strong> the dog wanted to play.`, tags: ['conjunction', 'coordinating-conjunction']},
+        {test: `I will go <strong>${word}</strong> you finish your homework.`, tags: ['conjunction', 'subordinating-conjunction']},
+        {test: `None of these`, tags: ['not-conjunction']}
+    ];
+    return tests;
+}
+
+function generateInterjectionTest(word) {
+    const tests = [
+        {test: `<strong>${word}</strong>! Look at that cat.`, tags: ['interjection']},
+        {test: `None of these`, tags: ['not-interjection']}
+    ];
+    return tests;
+}
+
 function bindAnswerClick(element) {
     $(element).on('click', function(index) {
         if ($(this).hasClass('selected')) {
@@ -294,8 +330,12 @@ function setupTest() {
         noun: generateNounTest(wordDetails.word),
         adjective: generateAdjectiveTest(wordDetails.word),
         determiner: generateDeterminerTest(wordDetails.word),
-        adverb: generateAdverbTest(wordDetails.word)
-    }
+        adverb: generateAdverbTest(wordDetails.word),
+        pronoun: generatePronounTest(wordDetails.word),
+        preposition: generatePrepositionTest(wordDetails.word),
+        conjunction: generateConjunctionTest(wordDetails.word),
+        interjection: generateInterjectionTest(wordDetails.word)
+    };
 
     buildTest(tests, wordDetails.word);
 }
