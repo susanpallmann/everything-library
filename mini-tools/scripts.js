@@ -111,7 +111,7 @@ const config = (function() {
     const vocabulary = [];
     let wordCount = 0;
     let word = testVocabulary[0];
-    const savedWords = [];
+    const savedWords = [{"word":"the","tags":["not-verb","not-noun","not-adjective","determiner","vowel-determiner","plural-determiner","not-adverb","not-pronoun","not-preposition","not-conjunction","not-interjection"]}];
 
     window.getTestVocabulary = function() {
         return testVocabulary;
@@ -263,6 +263,8 @@ function bindAnswerClick(element) {
 function buildTest(tests, word) {
     $('#test').empty().attr('word', word).attr('questions', Object.keys(tests).length);
     $('#test').append(`<h1>Word: <span class="word">${word}</span></h1>`);
+    const testVocabulary = getTestVocabulary();
+    $('#test').append(`<p>Word ${testVocabulary.indexOf(word) + 1} of ${testVocabulary.length}</p>`);
     let iteration = 1;
     for (let test in tests) {
         $('#test').append(`<div class="question" test="${test}" question="${iteration}" style="display: none"></div>`);
@@ -324,6 +326,11 @@ function newWord() {
 
 function setupTest() {
     const wordDetails = getWordDetails();
+    const savedWords = getSavedWords();
+    if (savedWords.filter((wordData) => wordData.word === wordDetails.word).length === 1) {
+        newWord();
+        return;
+    }
 
     const tests = {
         verb: generateVerbTest(wordDetails.word),
