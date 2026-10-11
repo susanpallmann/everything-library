@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather app</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script type="text/javascript" src="./scripts.js"></script>
+</head>
+<body>
+    <div id="weather-background" weather="clear" time="dawn" transition="transition-0">
+        <div id="sun"></div>
+        <svg class="cloud" type="round" viewBox="0 0 509 287" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path class="base" d="M0 160L30 256L46 274L146 246C156 254 180 272.8 196 284C216 298 266 256 276 256C286 256 327.5 238 361.5 256C395.5 274 418 234 460 256C502 278 496 218 506 196C516 174 488 138 476 112C464 86 414 60 404 42C396 27.6 322 36 286 42L212 12L176 0H146L104 42V76L46 112L0 160Z"/>
+            <path class="base-secondary" d="M0 160L30 256L46 274L146 246C156 254 180 272.8 196 284C216 298 266 256 276 256C286 256 327.5 238 361.5 256C395.5 274 418 234 460 256C502 278 496 218 506 196C516 174 488 138 476 112C464 86 414 60 404 42C396 27.6 322 36 286 42L212 12L176 0H146L104 42V76L46 112L0 160Z"/>
+            <path class="shadow" d="M44 181.666H142L236 219.666L330 203.666L442 181.666L507.89 188.854C507.587 191.243 506.975 193.521 506 195.666C496 217.666 502 277.666 460 255.666C418 233.666 396 273.666 362 255.666C328 237.666 286 255.666 276 255.666C266 255.666 216 297.666 196 283.666C180 272.466 156 253.666 146 245.666L46 273.666L30 255.666L0 159.666L0.637695 159L44 181.666Z"/>
+            <path class="shadow-secondary" d="M44 181.666H142L236 219.666L330 203.666L442 181.666L507.89 188.854C507.587 191.243 506.975 193.521 506 195.666C496 217.666 502 277.666 460 255.666C418 233.666 396 273.666 362 255.666C328 237.666 286 255.666 276 255.666C266 255.666 216 297.666 196 283.666C180 272.466 156 253.666 146 245.666L46 273.666L30 255.666L0 159.666L0.637695 159L44 181.666Z"/>
+        </svg>
+        <svg class="cloud" type="round" viewBox="0 0 509 287" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path class="base" d="M0 160L30 256L46 274L146 246C156 254 180 272.8 196 284C216 298 266 256 276 256C286 256 327.5 238 361.5 256C395.5 274 418 234 460 256C502 278 496 218 506 196C516 174 488 138 476 112C464 86 414 60 404 42C396 27.6 322 36 286 42L212 12L176 0H146L104 42V76L46 112L0 160Z"/>
+            <path class="base-secondary" d="M0 160L30 256L46 274L146 246C156 254 180 272.8 196 284C216 298 266 256 276 256C286 256 327.5 238 361.5 256C395.5 274 418 234 460 256C502 278 496 218 506 196C516 174 488 138 476 112C464 86 414 60 404 42C396 27.6 322 36 286 42L212 12L176 0H146L104 42V76L46 112L0 160Z"/>
+            <path class="shadow" d="M44 181.666H142L236 219.666L330 203.666L442 181.666L507.89 188.854C507.587 191.243 506.975 193.521 506 195.666C496 217.666 502 277.666 460 255.666C418 233.666 396 273.666 362 255.666C328 237.666 286 255.666 276 255.666C266 255.666 216 297.666 196 283.666C180 272.466 156 253.666 146 245.666L46 273.666L30 255.666L0 159.666L0.637695 159L44 181.666Z"/>
+            <path class="shadow-secondary" d="M44 181.666H142L236 219.666L330 203.666L442 181.666L507.89 188.854C507.587 191.243 506.975 193.521 506 195.666C496 217.666 502 277.666 460 255.666C418 233.666 396 273.666 362 255.666C328 237.666 286 255.666 276 255.666C266 255.666 216 297.666 196 283.666C180 272.466 156 253.666 146 245.666L46 273.666L30 255.666L0 159.666L0.637695 159L44 181.666Z"/>
+        </svg>
+    </div>
+    <div id="screen">
+        <div class="bokeh"></div>
+        <div class="bokeh"></div>
+        <div class="bokeh"></div>
+        <div class="bokeh"></div>
+        <div class="bokeh"></div>
+        <div class="weather" wind="none" type="rain" style="display: none">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+    <div id="UI">
+        <div id="top-section">
+            <p id="city-name">City name</p>
+            <p id="current-temp">0°</p>
+        </div>
+        <div id="hourly-forecast">
+            <p class="forecast-heading">Hourly forecast</p>
+            <div class="tiles"></div>
+        </div>
+        <div id="daily-forecast">
+            <p class="forecast-heading">Daily forecast</p>
+            <div class="tiles"></div>
+        </div>
+    </div>
+</body>
+</html>
