@@ -317,7 +317,7 @@ function buildHourTile(data) {
 
 function loadHourlyForecast(weather) {
     const offset = weather.utc_offset_seconds;
-
+    $('#hourly-forecast').find('.tiles').empty();
     for (let i = 0; i < 48; i++) {
         if (new Date(cityTimeToTimestamp(weather.hourly.time[i], offset)).getHours() < new Date(Date.now()).getHours()) {
             continue;
@@ -329,6 +329,7 @@ function loadHourlyForecast(weather) {
 
 function loadDailyForecast(weather) {
     const offset = weather.utc_offset_seconds;
+    $('#daily-forecast').find('.tiles').empty();
     for (let i = 0; i < 7; i++) {
 
         buildDayTile({time: cityTimeToTimestamp(weather.daily.time[i], offset), code: weather.daily.weather_code[i], temperatureMax: Math.round(weather.daily.temperature_2m_max[i]), temperatureMin: Math.round(weather.daily.temperature_2m_min[i])});
