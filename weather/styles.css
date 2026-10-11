@@ -654,6 +654,7 @@ body {
     padding: 16px;
     width: 100%;
     box-sizing: border-box;
+    height: fit-content;
 }
 
 #hourly-forecast .tiles, #daily-forecast .tiles {
@@ -669,6 +670,7 @@ body {
     scrollbar: hidden;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;
+    height: fit-content;
 }
 
 #hourly-forecast .tiles::-webkit-scrollbar {
