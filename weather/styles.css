@@ -1,0 +1,912 @@
+:root {
+    --bg-clear-dawn-a: rgb(90, 114, 133);
+    --bg-clear-dawn-b: rgb(249, 189, 108);
+    --bg-clear-dawn-c: rgb(173, 87, 16);
+    --bg-clear-day-a: rgb(145, 202, 255);
+    --bg-clear-day-b: rgb(166, 212, 255);
+    --bg-clear-day-c: rgb(188, 223, 255);
+    --bg-clear-dusk-a: rgb(135, 130, 178);
+    --bg-clear-dusk-b: rgb(215, 84, 105);
+    --bg-clear-dusk-c: rgb(204, 126, 38);
+    --bg-clear-night-a: rgb(14, 37, 58);
+    --bg-clear-night-b: rgb(27, 54, 78);
+    --bg-clear-night-c: rgb(41, 71, 99);
+    --bg-cloudy-dawn-a: rgb(124, 149, 172);
+    --bg-cloudy-dawn-b: rgb(133, 140, 166);
+    --bg-cloudy-dawn-c: rgb(208, 135, 95);
+    --bg-cloudy-day-a: rgb(124, 149, 172);
+    --bg-cloudy-day-b: rgb(109, 135, 159);
+    --bg-cloudy-day-c: rgb(95, 121, 146);
+    --bg-cloudy-dusk-a: rgb(30, 44, 58);
+    --bg-cloudy-dusk-b: rgb(67, 51, 45);
+    --bg-cloudy-dusk-c: rgb(104, 58, 33);
+    --bg-cloudy-night-a: rgb(42, 55, 66);
+    --bg-cloudy-night-b: rgb(27, 40, 51);
+    --bg-cloudy-night-c: rgb(12, 25, 36);
+    --clear-dawn-cloud-base-1: rgb(114, 91, 78);
+    --clear-dawn-cloud-shadow-1: rgb(255, 227, 175);
+    --clear-dawn-cloud-base-2: rgb(158, 104, 67);
+    --clear-dawn-cloud-shadow-2: rgb(252, 204, 114);
+    --clear-day-cloud-base-1: rgb(255, 255, 255);
+    --clear-day-cloud-shadow-1: rgb(186, 222, 255);
+    --clear-day-cloud-base-2: var(--clear-day-cloud-base-1);
+    --clear-day-cloud-shadow-2: var(--clear-day-cloud-shadow-1);
+    --clear-dusk-cloud-base-1: rgb(139, 101, 148);
+    --clear-dusk-cloud-shadow-1: rgb(254, 100, 126);
+    --clear-dusk-cloud-base-2: rgb(175, 90, 90);
+    --clear-dusk-cloud-shadow-2: rgb(254, 172, 100);
+    --clear-night-cloud-base-1: rgb(35, 62, 87);
+    --clear-night-cloud-shadow-1: rgb(43, 67, 89);
+    --clear-night-cloud-base-2: var(--clear-night-cloud-base-1);
+    --clear-night-cloud-shadow-2: var(--clear-night-cloud-shadow-1);
+    --cloudy-dawn-cloud-base-1: rgb(140, 163, 186);
+    --cloudy-dawn-cloud-shadow-1: rgb(190, 155, 115);
+    --cloudy-dawn-cloud-base-2: var(--cloudy-dawn-cloud-base-1);
+    --cloudy-dawn-cloud-shadow-2: var(--cloudy-dawn-cloud-shadow-1);
+    --cloudy-day-cloud-base-1: rgb(140, 163, 186);
+    --cloudy-day-cloud-shadow-1: rgb(98, 127, 156);
+    --cloudy-day-cloud-base-2: var(--cloudy-day-cloud-base-1);
+    --cloudy-day-cloud-shadow-2: var(--cloudy-day-cloud-shadow-1);
+    --cloudy-dusk-cloud-base-1: rgb(46, 60, 71);
+    --cloudy-dusk-cloud-shadow-1: rgb(107, 72, 42);
+    --cloudy-dusk-cloud-base-2: var(--cloudy-dusk-cloud-base-1);
+    --cloudy-dusk-cloud-shadow-2: var(--cloudy-dusk-cloud-shadow-1);
+    --cloudy-night-cloud-base-1: rgb(46, 60, 71);
+    --cloudy-night-cloud-shadow-1: rgb(16, 27, 36);
+    --cloudy-night-cloud-base-2: var(--cloudy-night-cloud-base-1);
+    --cloudy-night-cloud-shadow-2: var(--cloudy-night-cloud-shadow-1);
+}
+
+:root [weather="clear"][time="dawn"] {
+    --bg-base: linear-gradient(to bottom,
+        rgb(from var(--bg-clear-dawn-a) r g b / 1),
+        rgb(from var(--bg-clear-dawn-b) r g b / 1),
+        rgb(from var(--bg-clear-dawn-c) r g b / 1));
+    --bg-secondary: linear-gradient(to bottom,
+        rgb(from var(--bg-clear-day-a) r g b / var(--bg-secondary-opacity)),
+        rgb(from var(--bg-clear-day-b) r g b / var(--bg-secondary-opacity)),
+        rgb(from var(--bg-clear-day-c) r g b / var(--bg-secondary-opacity)));
+
+    --cloud-base-1: rgb(from var(--clear-dawn-cloud-base-1) r g b / 1);
+    --cloud-base-1-secondary: rgb(from var(--clear-day-cloud-base-1) r g b / var(--bg-secondary-opacity));
+    --cloud-base-2: rgb(from var(--clear-dawn-cloud-base-2) r g b / 1);
+    --cloud-base-2-secondary: rgb(from var(--clear-day-cloud-base-2) r g b / var(--bg-secondary-opacity));
+
+    --sun-base: #FFEDCA;
+    --sun-glow: rgba(255, 211, 116, 80);
+    --sun-base-secondary: #FFFFFF;
+    --sun-glow-secondary: rgba(255, 237, 199, 20);
+    --sun-opacity: 1;
+}
+
+:root [weather="clear"][time="day"] {
+    --bg-base: linear-gradient(to bottom,
+    rgb(from var(--bg-clear-day-a) r g b / 1),
+    rgb(from var(--bg-clear-day-b) r g b / 1),
+    rgb(from var(--bg-clear-day-c) r g b / 1));
+    --bg-secondary: linear-gradient(to bottom,
+    rgb(from var(--bg-clear-dusk-a) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-clear-dusk-b) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-clear-dusk-c) r g b / var(--bg-secondary-opacity)));
+
+    --cloud-base-1: rgb(from var(--clear-day-cloud-base-1) r g b / 1);
+    --cloud-base-1-secondary: rgb(from var(--clear-dusk-cloud-base-1) r g b / var(--bg-secondary-opacity));
+    --cloud-base-2: rgb(from var(--clear-day-cloud-base-2) r g b / 1);
+    --cloud-base-2-secondary: rgb(from var(--clear-dusk-cloud-base-2) r g b / var(--bg-secondary-opacity));
+
+    --sun-base: #FFFFFF;
+    --sun-glow: rgba(255, 237, 199, 20);
+    --sun-base-secondary: #FFE1A8;
+    --sun-glow-secondary: rgba(255, 156, 85, 80);
+    --sun-opacity: 1;
+}
+
+:root [weather="clear"][time="dusk"] {
+    --bg-base: linear-gradient(to bottom,
+    rgb(from var(--bg-clear-dusk-a) r g b / 1),
+    rgb(from var(--bg-clear-dusk-b) r g b / 1),
+    rgb(from var(--bg-clear-dusk-c) r g b / 1));
+    --bg-secondary: linear-gradient(to bottom,
+    rgb(from var(--bg-clear-night-a) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-clear-night-b) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-clear-night-c) r g b / var(--bg-secondary-opacity)));
+
+    --cloud-base-1: rgb(from var(--clear-dusk-cloud-base-1) r g b / 1);
+    --cloud-base-1-secondary: rgb(from var(--clear-night-cloud-base-1) r g b / var(--bg-secondary-opacity));
+    --cloud-base-2: rgb(from var(--clear-dusk-cloud-base-2) r g b / 1);
+    --cloud-base-2-secondary: rgb(from var(--clear-night-cloud-base-2) r g b / var(--bg-secondary-opacity));
+
+    --sun-base: #FFE1A8;
+    --sun-glow: rgba(255, 156, 85, 80);
+    --sun-base-secondary: #FFE1A8;
+    --sun-glow-secondary: rgba(255, 156, 85, 80);
+    --sun-opacity: calc(1 - var(--bg-secondary-opacity));
+}
+
+:root [weather="clear"][time="night"] {
+    --bg-base: linear-gradient(to bottom,
+    rgb(from var(--bg-clear-night-a) r g b / 1),
+    rgb(from var(--bg-clear-night-b) r g b / 1),
+    rgb(from var(--bg-clear-night-c) r g b / 1));
+    --bg-secondary: linear-gradient(to bottom,
+    rgb(from var(--bg-clear-dawn-a) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-clear-dawn-b) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-clear-dawn-c) r g b / var(--bg-secondary-opacity)));
+
+    --cloud-base-1: rgb(from var(--clear-night-cloud-base-1) r g b / 1);
+    --cloud-base-1-secondary: rgb(from var(--clear-dawn-cloud-base-1) r g b / var(--bg-secondary-opacity));
+    --cloud-base-2: rgb(from var(--clear-night-cloud-base-2) r g b / 1);
+    --cloud-base-2-secondary: rgb(from var(--clear-dawn-cloud-base-2) r g b / var(--bg-secondary-opacity));
+
+    --sun-base: #FFEDCA;
+    --sun-glow: rgba(255, 211, 116, 80);
+    --sun-base-secondary: transparent;
+    --sun-glow-secondary: rgba(255, 156, 85, 0);
+    --sun-opacity: calc(0 + var(--bg-secondary-opacity));
+}
+
+:root [weather="cloudy"][time="dawn"] {
+    --bg-base: linear-gradient(to bottom,
+    rgb(from var(--bg-cloudy-dawn-a) r g b / 1),
+    rgb(from var(--bg-cloudy-dawn-b) r g b / 1),
+    rgb(from var(--bg-cloudy-dawn-c) r g b / 1));
+    --bg-secondary: linear-gradient(to bottom,
+    rgb(from var(--bg-cloudy-day-a) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-cloudy-day-b) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-cloudy-day-c) r g b / var(--bg-secondary-opacity)));
+
+    --cloud-base-1: rgb(from var(--cloudy-dawn-cloud-base-1) r g b / 1);
+    --cloud-base-1-secondary: rgb(from var(--cloudy-day-cloud-base-1) r g b / var(--bg-secondary-opacity));
+    --cloud-base-2: rgb(from var(--cloudy-dawn-cloud-base-2) r g b / 1);
+    --cloud-base-2-secondary: rgb(from var(--cloudy-day-cloud-base-2) r g b / var(--bg-secondary-opacity));
+
+    --sun-base: transparent;
+    --sun-glow: rgba(255, 156, 85, 0);
+    --sun-base-secondary: transparent;
+    --sun-glow-secondary: rgba(255, 156, 85, 0);
+    --sun-opacity: 0;
+}
+
+:root [weather="cloudy"][time="day"] {
+    --bg-base: linear-gradient(to bottom,
+    rgb(from var(--bg-cloudy-day-a) r g b / 1),
+    rgb(from var(--bg-cloudy-day-b) r g b / 1),
+    rgb(from var(--bg-cloudy-day-c) r g b / 1));
+    --bg-secondary: linear-gradient(to bottom,
+    rgb(from var(--bg-cloudy-dusk-a) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-cloudy-dusk-b) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-cloudy-dusk-c) r g b / var(--bg-secondary-opacity)));
+
+    --cloud-base-1: rgb(from var(--cloudy-day-cloud-base-1) r g b / 1);
+    --cloud-base-1-secondary: rgb(from var(--cloudy-dusk-cloud-base-1) r g b / var(--bg-secondary-opacity));
+    --cloud-base-2: rgb(from var(--cloudy-day-cloud-base-2) r g b / 1);
+    --cloud-base-2-secondary: rgb(from var(--cloudy-dusk-cloud-base-2) r g b / var(--bg-secondary-opacity));
+
+    --sun-base: transparent;
+    --sun-glow: rgba(255, 156, 85, 0);
+    --sun-base-secondary: transparent;
+    --sun-glow-secondary: rgba(255, 156, 85, 0);
+    --sun-opacity: 0;
+}
+
+:root [weather="cloudy"][time="dusk"] {
+    --bg-base: linear-gradient(to bottom,
+    rgb(from var(--bg-cloudy-dusk-a) r g b / 1),
+    rgb(from var(--bg-cloudy-dusk-b) r g b / 1),
+    rgb(from var(--bg-cloudy-dusk-c) r g b / 1));
+    --bg-secondary: linear-gradient(to bottom,
+    rgb(from var(--bg-cloudy-night-a) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-cloudy-night-b) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-cloudy-night-c) r g b / var(--bg-secondary-opacity)));
+
+    --cloud-base-1: rgb(from var(--cloudy-dusk-cloud-base-1) r g b / 1);
+    --cloud-base-1-secondary: rgb(from var(--cloudy-night-cloud-base-1) r g b / var(--bg-secondary-opacity));
+    --cloud-base-2: rgb(from var(--cloudy-dusk-cloud-base-2) r g b / 1);
+    --cloud-base-2-secondary: rgb(from var(--cloudy-night-cloud-base-2) r g b / var(--bg-secondary-opacity));
+
+    --sun-base: transparent;
+    --sun-glow: rgba(255, 156, 85, 0);
+    --sun-base-secondary: transparent;
+    --sun-glow-secondary: rgba(255, 156, 85, 0);
+    --sun-opacity: 0;
+}
+
+:root [weather="cloudy"][time="night"] {
+    --bg-base: linear-gradient(to bottom,
+    rgb(from var(--bg-cloudy-night-a) r g b / 1),
+    rgb(from var(--bg-cloudy-night-b) r g b / 1),
+    rgb(from var(--bg-cloudy-night-c) r g b / 1));
+    --bg-secondary: linear-gradient(to bottom,
+    rgb(from var(--bg-cloudy-dawn-a) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-cloudy-dawn-b) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-cloudy-dawn-c) r g b / var(--bg-secondary-opacity)));
+
+    --cloud-base-1: rgb(from var(--cloudy-night-cloud-base-1) r g b / 1);
+    --cloud-base-1-secondary: rgb(from var(--cloudy-dawn-cloud-base-1) r g b / var(--bg-secondary-opacity));
+    --cloud-base-2: rgb(from var(--cloudy-night-cloud-base-2) r g b / 1);
+    --cloud-base-2-secondary: rgb(from var(--cloudy-dawn-cloud-base-2) r g b / var(--bg-secondary-opacity));
+
+    --sun-base: transparent;
+    --sun-glow: rgba(255, 156, 85, 0);
+    --sun-base-secondary: transparent;
+    --sun-glow-secondary: rgba(255, 156, 85, 0);
+    --sun-opacity: 0;
+}
+
+:root [transition="transition-0"] {
+    --bg-secondary-opacity: 0;
+    --sun-up: 0;
+    --sun-down: 1;
+}
+
+:root [transition="transition-10"] {
+    --bg-secondary-opacity: 0.1;
+    --sun-up: 0.1;
+    --sun-down: 0.9;
+}
+
+:root [transition="transition-20"] {
+    --bg-secondary-opacity: 0.2;
+    --sun-up: 0.2;
+    --sun-down: 0.8;
+}
+
+:root [transition="transition-30"] {
+    --bg-secondary-opacity: 0.3;
+    --sun-up: 0.3;
+    --sun-down: 0.7;
+}
+
+:root [transition="transition-40"] {
+    --bg-secondary-opacity: 0.4;
+    --sun-up: 0.4;
+    --sun-down: 0.6;
+}
+
+:root [transition="transition-50"] {
+    --bg-secondary-opacity: 0.5;
+    --sun-up: 0.5;
+    --sun-down: 0.5;
+}
+
+:root [transition="transition-60"] {
+    --bg-secondary-opacity: 0.6;
+    --sun-up: 0.6;
+    --sun-down: 0.4;
+}
+
+:root [transition="transition-70"] {
+    --bg-secondary-opacity: 0.7;
+    --sun-up: 0.7;
+    --sun-down: 0.3;
+}
+
+:root [transition="transition-80"] {
+    --bg-secondary-opacity: 0.8;
+    --sun-up: 0.8;
+    --sun-down: 0.2;
+}
+
+:root [transition="transition-90"] {
+    --bg-secondary-opacity: 0.9;
+    --sun-up: 0.9;
+    --sun-down: 0.1;
+}
+
+#top-section {
+    display: flex;
+    min-height: 300px;
+    padding: 24px;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0px 0px  16px rgba(0, 0, 0, 0.125));
+}
+
+#top-section #city-name {
+    font-size: 2rem;
+    margin: 0;
+}
+
+#top-section #current-temp {
+    font-size: 5rem;
+    margin: 0;
+}
+
+.weather {
+    height: 100%;
+}
+
+.weather[wind="none"] {
+
+}
+
+.weather[wind="wind"] {
+    rotate: 17deg;
+}
+
+[type="rain"] .particle {
+    height: 148px;
+    width: 1px;
+    border-radius: 148px;
+    background-color: white;
+    opacity: 0.08;
+    left: 40px;
+    top: 30px;
+    position: absolute;
+    animation: rain 0.35s linear infinite;
+}
+
+[type="snow"] .particle {
+    height: 6px;
+    width: 6px;
+    border-radius: 148px;
+    background-color: white;
+    opacity: 0.75;
+    left: 40px;
+    top: 30px;
+    position: absolute;
+    animation: snow 3s linear infinite;
+}
+
+[type="rain"] .particle:nth-child(12n) {
+    left: 25%;
+    animation-delay: -0.05s;
+    animation-duration: 0.38s;
+}
+
+[type="rain"] .particle:nth-child(12n + 1) {
+    left: 45%;
+    animation-delay: -0.1s;
+}
+
+[type="rain"] .particle:nth-child(12n + 2) {
+    left: 60%;
+    animation-delay: -0.025s;
+    animation-duration: 0.45s;
+}
+
+[type="rain"] .particle:nth-child(12n + 3) {
+    left: 85%;
+    animation-delay: -0.075s;
+    animation-duration: 0.38s;
+}
+
+[type="rain"] .particle:nth-child(12n + 4) {
+    left: 15%;
+    animation-delay: -0.0025s;
+    animation-duration: 0.4s;
+}
+
+[type="rain"] .particle:nth-child(12n + 5) {
+    left: 20%;
+    animation-delay: -0.063s;
+}
+
+[type="rain"] .particle:nth-child(12n + 6) {
+    left: 55%;
+    animation-delay: -0.042s;
+    animation-duration: 0.39s;
+}
+
+[type="rain"] .particle:nth-child(12n + 7) {
+    left: 95%;
+    animation-delay: -0.25s;
+    animation-duration: 0.4s;
+}
+
+[type="rain"] .particle:nth-child(12n + 8) {
+    left: 82%;
+    animation-delay: -0.05s;
+    animation-duration: 0.5s;
+}
+
+[type="rain"] .particle:nth-child(12n) {
+    left: 25%;
+    animation-delay: -0.05s;
+    animation-duration: 0.38s;
+}
+
+[type="rain"] .particle:nth-child(12n + 1) {
+    left: 45%;
+    animation-delay: -0.1s;
+}
+
+[type="rain"] .particle:nth-child(12n + 2) {
+    left: 60%;
+    animation-delay: -0.025s;
+    animation-duration: 0.45s;
+}
+
+[type="rain"] .particle:nth-child(12n + 3) {
+    left: 85%;
+    animation-delay: -0.075s;
+    animation-duration: 0.38s;
+}
+
+[type="rain"] .particle:nth-child(12n + 4) {
+    left: 15%;
+    animation-delay: -0.0025s;
+    animation-duration: 0.4s;
+}
+
+[type="rain"] .particle:nth-child(12n + 5) {
+    left: 20%;
+    animation-delay: -0.063s;
+}
+
+[type="rain"] .particle:nth-child(12n + 6) {
+    left: 55%;
+    animation-delay: -0.042s;
+    animation-duration: 0.39s;
+}
+
+[type="rain"] .particle:nth-child(12n + 7) {
+    left: 95%;
+    animation-delay: -0.25s;
+    animation-duration: 0.4s;
+}
+
+[type="rain"] .particle:nth-child(12n + 8) {
+    left: 82%;
+    animation-delay: -0.05s;
+    animation-duration: 0.5s;
+}
+
+[type="rain"] .particle:nth-child(12n) {
+    left: 25%;
+    animation-delay: -0.05s;
+    animation-duration: 0.38s;
+}
+
+[type="rain"] .particle:nth-child(12n + 1) {
+    left: 45%;
+    animation-delay: -0.1s;
+}
+
+[type="rain"] .particle:nth-child(12n + 2) {
+    left: 60%;
+    animation-delay: -0.025s;
+    animation-duration: 0.45s;
+}
+
+[type="rain"] .particle:nth-child(12n + 3) {
+    left: 85%;
+    animation-delay: -0.075s;
+    animation-duration: 0.38s;
+}
+
+[type="rain"] .particle:nth-child(12n + 4) {
+    left: 15%;
+    animation-delay: -0.0025s;
+    animation-duration: 0.4s;
+}
+
+[type="rain"] .particle:nth-child(12n + 5) {
+    left: 20%;
+    animation-delay: -0.063s;
+}
+
+[type="rain"] .particle:nth-child(12n + 6) {
+    left: 55%;
+    animation-delay: -0.042s;
+    animation-duration: 0.39s;
+}
+
+[type="rain"] .particle:nth-child(12n + 7) {
+    left: 95%;
+    animation-delay: -0.25s;
+    animation-duration: 0.4s;
+}
+
+[type="rain"] .particle:nth-child(12n + 8) {
+    left: 82%;
+    animation-delay: -0.05s;
+    animation-duration: 0.5s;
+}
+
+[type="rain"] .particle:nth-child(12n + 9) {
+    left: 51%;
+    animation-delay: -0.05s;
+    animation-duration: 0.58s;
+}
+
+[type="rain"] .particle:nth-child(12n + 10) {
+    left: 12%;
+    animation-delay: -0.05s;
+    animation-duration: 0.61s;
+}
+
+[type="snow"] .particle:nth-child(12n) {
+    left: 25%;
+    animation-delay: -0.05s;
+    animation-duration: 3.8s;
+}
+
+[type="snow"] .particle:nth-child(12n + 1) {
+    left: 45%;
+    animation-delay: -0.1s;
+    animation-duration: 4.2s;
+}
+
+[type="snow"] .particle:nth-child(12n + 2) {
+    left: 60%;
+    animation-delay: -0.025s;
+    animation-duration: 5s;
+}
+
+[type="snow"] .particle:nth-child(12n + 3) {
+    left: 85%;
+    animation-delay: -0.075s;
+    animation-duration: 3s;
+}
+
+[type="snow"] .particle:nth-child(12n + 4) {
+    left: 15%;
+    animation-delay: -0.0025s;
+    animation-duration: 4s;
+}
+
+[type="snow"] .particle:nth-child(12n + 5) {
+    left: 20%;
+    animation-delay: -0.063s;
+    animation-duration: 7.5s;
+}
+
+[type="snow"] .particle:nth-child(12n + 6) {
+    left: 55%;
+    animation-delay: -0.042s;
+    animation-duration: 3.5s;
+}
+
+[type="snow"] .particle:nth-child(12n + 7) {
+    left: 95%;
+    animation-delay: -0.25s;
+    animation-duration: 2.4s;
+}
+
+[type="snow"] .particle:nth-child(12n + 8) {
+    left: 82%;
+    animation-delay: -0.05s;
+    animation-duration: 6.5s;
+}
+
+[type="snow"] .particle:nth-child(12n + 9) {
+    left: 51%;
+    animation-delay: -0.05s;
+    animation-duration: 5.8s;
+}
+
+[type="snow"] .particle:nth-child(12n + 10) {
+    left: 12%;
+    animation-delay: -0.05s;
+    animation-duration: 6.1s;
+}
+
+#screen [type="snow"] .particle {
+    opacity: 0.45;
+}
+
+#screen .particle {
+    filter: blur(2px);
+    transform: translateX(-5%);
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+#weather-background {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-image:
+        var(--bg-secondary),
+        var(--bg-base);
+    overflow: hidden;
+}
+
+#screen {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: rgb(80 107 126 / 0.2);
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+}
+
+#UI {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.forecast-heading {
+    margin: 0px 0px 8px;
+    font-weight: 500;
+}
+
+#hourly-forecast, #daily-forecast {
+    background-color: rgb(2 17 27 / 0.2);
+    min-height: 70px;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#hourly-forecast .tiles, #daily-forecast .tiles {
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar: hidden;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;
+}
+
+#hourly-forecast .tiles::-webkit-scrollbar {
+    display: none;  /* Older Safari and Chromium */
+}
+
+.tile {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 72px;
+    height: fit-content;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile p.time {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+}
+
+.tile p.temp-min, p.time.date {
+    opacity: 0.55;
+}
+
+.tile p {
+    margin: 0;
+}
+
+.icon path {
+    fill: #fff;
+}
+
+p {
+    font-family: 'Host Grotesk';
+    color: #fff;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.button {
+    background-color: rgba(31, 40, 36, 0.25);
+    padding: 8px 24px;
+    border-radius: 56px;
+    width: fit-content;
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+
+.button p {
+    margin: 0;
+    font-family: 'Host Grotesk';
+    color: #fff;
+}
+
+[weather="cloudy"] #sun {
+    display: none !important;
+    top: none !important;
+    left: none !important;
+}
+
+[time="dawn"] #sun {
+    top: calc(50vh - (50vh * var(--bg-secondary-opacity)));
+    left: calc(50vw - (50vw * var(--bg-secondary-opacity)));
+    left: calc(50vw * var(--bg-secondary-opacity));
+}
+
+[time="day"] #sun {
+    top: calc(50vh * var(--bg-secondary-opacity));
+    left: calc(50vw * var(--bg-secondary-opacity));
+    left: calc(50vw + (50vw * var(--bg-secondary-opacity)));
+}
+
+[time="dusk"] #sun {
+    top: calc(50vh + (50vh * var(--bg-secondary-opacity)));
+    left: calc(50vw + (50vw * var(--bg-secondary-opacity)));
+    left: calc(100vw - (50vw * var(--bg-secondary-opacity)));
+}
+
+[time="night"] #sun {
+    top: calc(100vh - (50vh * var(--bg-secondary-opacity)));
+    left: calc(100vw - (50vw * var(--bg-secondary-opacity)));
+    left: calc(50vw - (50vw * var(--bg-secondary-opacity)));
+}
+
+
+#sun {
+    height: 60px;
+    width: 60px;
+    border-radius: 200px;
+    background-color: var(--sun-base);
+    box-shadow: 0px 0px 40px 40px var(--sun-glow);
+    position: relative;
+    left: 40px;
+    opacity: var(--sun-opacity);
+    transform: translateY(-50px);
+}
+
+#sun:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 200px;
+    background-color: var(--sun-base-secondary);
+    box-shadow: 0px 0px 40px 40px var(--sun-glow-secondary);
+    opacity: var(--bg-secondary-opacity);
+}
+
+.bokeh {
+    background-color: rgba(255, 255, 255, 0.06);
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    position: absolute;
+    top: 20%;
+    left: -2%;
+    animation: bokeh 3s linear infinite;
+    filter: blur(1.5px);
+}
+
+.bokeh:nth-child(2) {
+    top: 25%;
+    left: 1%;
+    animation-delay: -1.5s;
+}
+
+.bokeh:nth-child(3) {
+    top: 60%;
+    left: 94%;
+    animation-delay: -0.75s;
+}
+
+.bokeh:nth-child(4) {
+    transform: scale(70%);
+    top: 80%;
+    left: 4%;
+    animation-delay: -0.75s;
+}
+
+.bokeh:nth-child(5) {
+    transform: scale(50%);
+    top: 10%;
+    left: 86%;
+    animation-delay: -0.45s;
+}
+
+.cloud {
+    height: 200px;
+    width: 300px;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    filter: blur(48px);
+    animation: cloud 240s -100s linear infinite;
+}
+
+.cloud:nth-child(2) {
+    animation: cloud 240s -200s linear infinite;
+    top: 50%;
+}
+
+.cloud[type="round"] {
+    height: 250px;
+    width: 350px;
+}
+
+.cloud[type="thin"] {
+    height: 125px;
+    width: 420px;
+}
+
+.cloud[type="tiny"] {
+    height: 100px;
+    width: 175px;
+}
+
+.cloud path.base {
+    fill: var(--cloud-base-1);
+}
+
+.cloud path.shadow {
+    fill: var(--cloud-shadow-1);
+}
+
+.cloud path.base-secondary {
+    fill: var(--cloud-base-1-secondary);
+}
+
+.cloud path.shadow-secondary {
+    fill: var(--cloud-shadow-1-secondary);
+}
+
+.cloud:nth-child(2) path.base {
+    fill: var(--cloud-base-2);
+}
+
+.cloud:nth-child(2) path.shadow {
+    fill: var(--cloud-shadow-2);
+}
+
+.cloud:nth-child(2) path.base-secondary {
+    fill: var(--cloud-base-2-secondary);
+}
+
+.cloud:nth-child(2) path.shadow-secondary {
+    fill: var(--cloud-shadow-2-secondary);
+}
+
+@keyframes cloud {
+    0%   {left: -100%}
+    100% {left:  100%}
+}
+
+@keyframes bokeh {
+    0%   {opacity: 0.7}
+    50%  {opacity: 1.0}
+    100% {opacity: 0.7}
+}
+
+@keyframes rain {
+    0%   {top: -50%}
+    100% {top:  100%}
+}
+
+@keyframes snow {
+    0%   {top: -50%}
+    100% {top:  100%}
+}
