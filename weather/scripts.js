@@ -351,12 +351,6 @@ async function loadWeather(cityName) {
 }
 
 $(document).ready(async function () {
-    let cityName = "Singapore";
+    let cityName = "Jeffersonville";
     loadWeather(cityName);
-
-    const weatherChangeTimeout = setInterval(() => {
-        const cityNames = ['Kansas City', 'Melbourne', 'Monaco', 'Honolulu', 'Singapore'];
-        cityName = cityNames[cityNames.indexOf(cityName) + 1 > cityNames.length - 1 ? 0 : cityNames.indexOf(cityName) + 1];
-        loadWeather(cityName);
-    }, 2000);
 });
