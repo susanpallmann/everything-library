@@ -336,8 +336,7 @@ function loadDailyForecast(weather) {
 
 }
 
-$(document).ready(async function () {
-    const cityName = "Jeffersonville";
+async function loadWeather(cityName) {
     const weather = await getWeather(cityName);
     $('#city-name').text(cityName);
     $('#current-temp').text(Math.round(weather.current.temperature_2m) + "°F");
@@ -348,4 +347,15 @@ $(document).ready(async function () {
     UIController.setWeather(config[weather.current.weather_code].weather);
     loadHourlyForecast(weather);
     loadDailyForecast(weather);
+}
+
+$(document).ready(async function () {
+    let cityName = "Singapore";
+    loadWeather(cityName);
+
+    const weatherChangeTimeout = setInterval(() => {
+        const cityNames = ['Kansas City', 'Melbourne', 'Monaco', 'Honolulu', 'Singapore'];
+        cityName = cityNames[cityNames.indexOf(cityName) + 1 > cityNames.length - 1 ? 0 : cityNames.indexOf(cityName) + 1];
+        loadWeather(cityName);
+    }, 2000);
 });
