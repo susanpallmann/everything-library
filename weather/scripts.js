@@ -111,9 +111,9 @@ async function getWeather(city) {
     // 2. Get the current weather and a daily forecast
     const weather = await fetch(
         `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}` +
-        `&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code` +
+        `&current=temperature_2m,dewpoint_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,weather_code` +
         `&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code` +
-        `&daily=temperature_2m_max,temperature_2m_min,sunrise,weather_code,sunset&temperature_unit=fahrenheit&timezone=auto`
+        `&daily=temperature_2m_max,temperature_2m_min,sunrise,uv_index_max,weather_code,sunset&temperature_unit=fahrenheit&timezone=auto`
     ).then(r => r.json());
 
     return weather;
@@ -294,10 +294,10 @@ function buildDayTile(data) {
     const icon = weatherConfig[data.code].icon;
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
     let dayString = days[new Date(data.time).getDay()];
-    let dateString = new Date(data.time).getMonth() + '/' + new Date(data.time).getDate();
+    let dateString = new Date(data.time).getMonth() + 1 + '/' + new Date(data.time).getDate();
 
-    if (new Date(data.time).getHours() === new Date(Date.now()).getHours()) {
-        timeString = 'Today';
+    if (new Date(data.time).getDate() === new Date(Date.now()).getDate()) {
+        dayString = 'Today';
     }
 
     const tile = $(`<div class="tile"><p class="temp-max">${data.temperatureMax}°</p><p class="temp-min">${data.temperatureMin}°</p>${icon}<p class="time day">${dayString}</p><p class="time date">${dateString}</p></div>`);
@@ -337,14 +337,40 @@ function loadDailyForecast(weather) {
 
 }
 
+function getWindDirection(value) {
+    let degrees = value
+    directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    degrees = degrees * 8 / 360;
+    degrees = Math.round(degrees, 0);
+    degrees = (degrees + 8) % 8
+
+    return(directions[degrees]);
+}
+
 async function loadWeather(cityName) {
     const weather = await getWeather(cityName);
-    $('#city-name').text(cityName);
-    $('#current-temp').text(Math.round(weather.current.temperature_2m) + "°F");
-    applyDayPhase(weather);
-    setInterval(() => applyDayPhase(weather), 60000);
     const UIController = getWeatherUIController();
     const config = getWeatherConfig();
+    $('#city-name').text(cityName);
+    $('#current-temp').text(Math.round(weather.current.temperature_2m) + "°");
+    $('#weather-description').text(config[weather.current.weather_code].name);
+    $('#wind').find('.big-number').text(weather.current.wind_speed_10m);
+    $('#wind').find('.result-caption').text(`From ${getWindDirection(weather.current.wind_direction_10m)}`);
+    $('#humidity').find('.big-number').text(weather.current.relative_humidity_2m);
+    const uvIndex = weather.daily.uv_index_max[0]
+    const uvLegend = uvIndex <= 2 ? 'Low' : uvIndex <= 5 ? 'Medium' : uvIndex <= 7 ? 'High' : uvIndex <= 10 ? 'Very high' : 'Extreme';
+    $('#uv-index').find('.big-number').text(uvIndex);
+    $('#uv-index').find('.result-caption').text(uvLegend);
+    const offset = weather.utc_offset_seconds;
+    const sunriseTime = new Date(cityTimeToTimestamp(weather.daily.sunrise[0], offset));
+    const sunsetTime = new Date(cityTimeToTimestamp(weather.daily.sunset[0], offset));
+    const daylight = sunsetTime - sunriseTime;
+    $('#sunrise').text(sunriseTime.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' }));
+    $('#sunset').text(sunsetTime.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' }));
+    $('#day-hours').text(Math.round(daylight / 1000 / 60 / 60));
+    $('#day-minutes').text(Math.round(daylight / 1000 / 60) % 60);
+    applyDayPhase(weather);
+    setInterval(() => applyDayPhase(weather), 60000);
     UIController.setWeather(config[weather.current.weather_code].weather);
     loadHourlyForecast(weather);
     loadDailyForecast(weather);
