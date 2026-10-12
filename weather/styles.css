@@ -59,13 +59,13 @@
 
 :root [weather="clear"][time="dawn"] {
     --bg-base: linear-gradient(to bottom,
-        rgb(from var(--bg-clear-dawn-a) r g b / 1),
-        rgb(from var(--bg-clear-dawn-b) r g b / 1),
-        rgb(from var(--bg-clear-dawn-c) r g b / 1));
+    rgb(from var(--bg-clear-dawn-a) r g b / 1),
+    rgb(from var(--bg-clear-dawn-b) r g b / 1),
+    rgb(from var(--bg-clear-dawn-c) r g b / 1));
     --bg-secondary: linear-gradient(to bottom,
-        rgb(from var(--bg-clear-day-a) r g b / var(--bg-secondary-opacity)),
-        rgb(from var(--bg-clear-day-b) r g b / var(--bg-secondary-opacity)),
-        rgb(from var(--bg-clear-day-c) r g b / var(--bg-secondary-opacity)));
+    rgb(from var(--bg-clear-day-a) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-clear-day-b) r g b / var(--bg-secondary-opacity)),
+    rgb(from var(--bg-clear-day-c) r g b / var(--bg-secondary-opacity)));
 
     --cloud-base-1: rgb(from var(--clear-dawn-cloud-base-1) r g b / 1);
     --cloud-base-1-secondary: rgb(from var(--clear-day-cloud-base-1) r g b / var(--bg-secondary-opacity));
@@ -312,6 +312,7 @@
 #top-section #current-temp {
     font-size: 5rem;
     margin: 0;
+    margin-left: 0.28em;
 }
 
 .weather {
@@ -601,28 +602,29 @@ body {
 }
 
 #weather-background {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     box-sizing: border-box;
     top: 0;
     left: 0;
-    position: absolute;
+    position: sticky;
     background-image:
-        var(--bg-secondary),
-        var(--bg-base);
+            var(--bg-secondary),
+            var(--bg-base);
     overflow: hidden;
 }
 
 #screen {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     box-sizing: border-box;
     top: 0;
     left: 0;
-    position: absolute;
+    position: sticky;
     background-color: rgb(80 107 126 / 0.2);
     backdrop-filter: blur(12px);
     overflow: hidden;
+    margin-top: -100vh;
 }
 
 #UI {
@@ -632,10 +634,12 @@ body {
     top: 0;
     left: 0;
     position: absolute;
-    padding: 24px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     gap: 24px;
+    overflow: scroll;
+    -ms-overflow-style: none;
 }
 
 .forecast-heading {
@@ -643,7 +647,7 @@ body {
     font-weight: 500;
 }
 
-#hourly-forecast, #daily-forecast {
+#hourly-forecast, #daily-forecast, .large-tile {
     background-color: rgb(2 17 27 / 0.2);
     min-height: 70px;
     border-radius: 24px;
@@ -654,6 +658,68 @@ body {
     width: 100%;
     box-sizing: border-box;
     height: fit-content;
+    flex-shrink: 0;
+}
+
+.heading-group {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+}
+
+.result-caption {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.0125em;
+    opacity: 0.8;
+}
+
+#additional-detail {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.large-tile {
+    width: calc(50% - 8px);
+    gap: 4px;
+}
+
+#humidity {
+    height: auto;
+}
+
+#sunlight {
+    height: unset;
+    gap: 12px;
+}
+
+#sunlight .heading-group {
+    margin-bottom: 12px;
+}
+
+#sunlight .result .big-number {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.large-tile p {
+    margin: 0;
+}
+
+.result {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.result .big-number {
+    font-size: 2.75rem;
+    font-weight: 300;
+    opacity: 1;
+    color: rgba(255, 255, 255, 1);
 }
 
 #hourly-forecast .tiles, #daily-forecast .tiles {
@@ -676,6 +742,12 @@ body {
     display: none;  /* Older Safari and Chromium */
 }
 
+#weather-description {
+    margin-top: -24px;
+    opacity: 0.6;
+    font-weight: 500;
+}
+
 .tile {
     display: flex;
     flex-direction: column;
@@ -691,6 +763,14 @@ body {
     align-items: center;
 }
 
+.tile .icon {
+    margin: 8px;
+}
+
+.tile p.temp-min, .tile p.temp-max {
+    font-weight: 500;
+}
+
 .tile p.time {
     font-size: 0.8rem;
     font-weight: 600;
@@ -699,6 +779,10 @@ body {
 
 .tile p.temp-min, p.time.date {
     opacity: 0.55;
+}
+
+.tile p.temp-min {
+    font-size: 0.9;
 }
 
 .tile p {
